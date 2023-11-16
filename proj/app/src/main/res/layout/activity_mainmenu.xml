@@ -1,9 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainmenuActivity">
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainmenuActivity">
+
+        <FrameLayout
+            android:id="@+id/frameLayout2"
+            android:layout_width="186dp"
+            android:layout_height="196dp"
+            android:layout_marginTop="460dp"
+            android:backgroundTint="@color/white"
+            android:visibility="visible"
+            android:clickable="true"
+            android:onClick="outdoorposter"
+            app:barrierMargin="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.055"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/TEXT3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="160dp"
+                android:text="Outdoor Poster"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/img_btn2"
+                android:layout_width="140dp"
+                android:layout_height="143dp"
+                android:layout_marginLeft="17dp"
+                android:onClick="outdoorposter"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/img1"
+                tools:srcCompat="@drawable/img1" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="186dp"
+            android:layout_height="196dp"
+            android:layout_marginTop="460dp"
+            android:backgroundTint="@color/white"
+            android:visibility="visible"
+            app:barrierMargin="10dp"
+            android:clickable="true"
+            android:onClick="poster"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.925"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="140dp"
+                android:layout_height="143dp"
+                android:layout_marginLeft="17dp"
+                android:onClick="poster"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#FFFFFF"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/img2"
+                tools:srcCompat="@drawable/img2" />
+
+            <TextView
+                android:id="@+id/TEXT1"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="160dp"
+                android:text="Poster"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar3"
+            android:layout_width="418dp"
+            android:layout_height="89dp"
+            android:background="#880A35"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="Print Express"
+            app:titleMargin="4dp"
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <ImageView
+            android:id="@+id/pic0"
+            android:layout_width="511dp"
+            android:layout_height="232dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar3"
+            app:srcCompat="@drawable/posters1" />
+
+        <ImageView
+            android:id="@+id/pic1"
+            android:layout_width="511dp"
+            android:layout_height="232dp"
+            android:layout_marginTop="15dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar3"
+            app:srcCompat="@drawable/poster2" />
+
+        <ImageView
+            android:id="@+id/pic2"
+            android:layout_width="511dp"
+            android:layout_height="232dp"
+            android:layout_marginTop="12dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar3"
+            app:srcCompat="@drawable/poster3" />
+
+        <LinearLayout
+            android:layout_width="414dp"
+            android:layout_height="51dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pic0">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="64dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="70dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:contentDescription="prev"
+                android:onClick="prev"
+                android:src="@drawable/icon_prev"
+                tools:srcCompat="@drawable/icon_prev" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="68dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:contentDescription="next"
+                android:onClick="next"
+                android:src="@drawable/icon_next"
+                tools:srcCompat="@drawable/icon_next" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="273dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="408dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Marketing Products"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout3"
+            android:layout_width="186dp"
+            android:layout_height="196dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/white"
+            android:visibility="visible"
+            app:barrierMargin="10dp"
+            android:clickable="true"
+            android:onClick="Banners"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.055"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout2"
+            tools:visibility="visible">
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="#FFFFFF"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/img3"
+                android:onClick="Banners"
+                tools:srcCompat="@drawable/img3" />
+
+            <TextView
+                android:id="@+id/TEXT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="166dp"
+                android:text="Banners"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
