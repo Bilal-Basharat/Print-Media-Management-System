@@ -42,11 +42,6 @@ public class MainmenuActivity extends AppCompatActivity {
         pic = findViewById(y);
 
         pic.setAlpha(1f);
-//
-//
-//
-//        text.setText(names[currentImage]);
-
 
 
     }

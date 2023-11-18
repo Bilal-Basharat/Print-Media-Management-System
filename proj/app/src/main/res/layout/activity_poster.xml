@@ -1,9 +1,606 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".posterActivity">
+    android:id="@+id/scrollviewpos"
+    android:layout_width="409dp"
+    android:layout_height="729dp"
+    android:contentDescription="@string/app_name"
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".posterActivity">
+
+
+        <FrameLayout
+            android:id="@+id/frameLayout2"
+            android:layout_width="82dp"
+            android:layout_height="89dp"
+            android:layout_marginTop="504dp"
+            android:backgroundTint="@color/white"
+            android:clickable="true"
+            android:onClick="outdoorposter"
+            android:visibility="visible"
+            app:barrierMargin="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.034"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/sizeA4"
+                android:layout_width="34dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="60dp"
+                android:text="A4"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/A4"
+                android:layout_width="40dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="20dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/app_name"
+                android:onClick="outdoorposter"
+                android:src="@drawable/iconpage"
+                tools:src="@drawable/iconpage"
+                tools:srcCompat="@drawable/iconpage" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="414dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="412dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/prev"
+                android:layout_width="64dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="70dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:contentDescription="prev"
+                android:onClick="prev"
+                android:src="@drawable/icon_prev"
+                tools:srcCompat="@drawable/icon_prev" />
+
+            <ImageButton
+                android:id="@+id/next"
+                android:layout_width="68dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:contentDescription="next"
+                android:onClick="next"
+                android:src="@drawable/icon_next"
+                tools:srcCompat="@drawable/icon_next" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar4"
+            android:layout_width="418dp"
+            android:layout_height="89dp"
+            android:background="#880A35"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="Print Express"
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Large"
+            app:titleTextColor="#000000" />
+
+        <ImageView
+            android:id="@+id/img0"
+            android:layout_width="372dp"
+            android:layout_height="274dp"
+            android:layout_marginTop="128dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.567"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/pic0"
+            tools:srcCompat="@drawable/pic0" />
+
+        <TextView
+            android:id="@+id/poster_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="96dp"
+            android:layout_marginEnd="355dp"
+            android:text="Poster"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_width="375dp"
+            android:layout_height="272dp"
+            android:layout_marginTop="128dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/img0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img2" />
+
+        <ImageView
+            android:id="@+id/img2"
+            android:layout_width="372dp"
+            android:layout_height="274dp"
+            android:layout_marginTop="128dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.567"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/k" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="372dp"
+            android:text="Size"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout4"
+            android:layout_width="82dp"
+            android:layout_height="89dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.094"
+            app:layout_constraintStart_toEndOf="@+id/frameLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <ImageButton
+                android:id="@+id/A3"
+                android:layout_width="48dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="20dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/app_name"
+                android:onClick="outdoorposter"
+                android:src="@drawable/iconpage"
+                tools:src="@drawable/iconpage"
+                tools:srcCompat="@drawable/iconpage" />
+
+            <TextView
+                android:id="@+id/sizeA3"
+                android:layout_width="34dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="60dp"
+                android:text="A3"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout5"
+            android:layout_width="82dp"
+            android:layout_height="89dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.123"
+            app:layout_constraintStart_toEndOf="@+id/frameLayout4"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <ImageButton
+                android:id="@+id/A2"
+                android:layout_width="48dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="20dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/app_name"
+                android:onClick="outdoorposter"
+                android:src="@drawable/iconpage"
+                tools:src="@drawable/iconpage"
+                tools:srcCompat="@drawable/iconpage" />
+
+            <TextView
+                android:id="@+id/sizeA2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="60dp"
+                android:text="A2"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="82dp"
+            android:layout_height="89dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayout5"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <ImageButton
+                android:id="@+id/B1"
+                android:layout_width="48dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="20dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/app_name"
+                android:onClick="outdoorposter"
+                android:src="@drawable/iconpage"
+                tools:src="@drawable/iconpage"
+                tools:srcCompat="@drawable/iconpage" />
+
+            <TextView
+                android:id="@+id/sizeB1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="60dp"
+                android:text="B1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/printingor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="108dp"
+            android:text="Printing Orientation"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout6"
+            android:layout_width="82dp"
+            android:layout_height="89dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.033"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/printingor">
+
+            <ImageButton
+                android:id="@+id/portrait"
+                android:layout_width="48dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="20dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/iconport"
+                tools:src="@drawable/iconport"
+                tools:srcCompat="@drawable/iconport" />
+
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="60dp"
+                android:text="Portrait"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout7"
+            android:layout_width="82dp"
+            android:layout_height="89dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/frameLayout6"
+            app:layout_constraintTop_toBottomOf="@+id/printingor">
+
+            <ImageButton
+                android:id="@+id/landscape"
+                android:layout_width="48dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="20dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/land"
+                tools:src="@drawable/land"
+                tools:srcCompat="@drawable/land" />
+
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="60dp"
+                android:text="Landscape"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="112dp"
+            android:text="Paper"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.036"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/printingor" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout10"
+            android:layout_width="180dp"
+            android:layout_height="76dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.048"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView15">
+
+            <ImageButton
+                android:id="@+id/mattcoated"
+                android:layout_width="48dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/material"
+                tools:src="@drawable/material"
+                tools:srcCompat="@drawable/material" />
+
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="25dp"
+                android:text="Matt coated"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout9"
+            android:layout_width="180dp"
+            android:layout_height="76dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.578"
+            app:layout_constraintStart_toEndOf="@+id/frameLayout10"
+            app:layout_constraintTop_toBottomOf="@+id/textView15">
+
+            <ImageButton
+                android:id="@+id/glosscoated"
+                android:layout_width="48dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/material"
+                tools:src="@drawable/material"
+                tools:srcCompat="@drawable/material" />
+
+            <TextView
+                android:id="@+id/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="25dp"
+                android:text="Gloss coated"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="180dp"
+            android:layout_height="76dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.048"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout10">
+
+            <ImageButton
+                android:id="@+id/whitecoated"
+                android:layout_width="48dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/material"
+                tools:src="@drawable/material"
+                tools:srcCompat="@drawable/material" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="25dp"
+                android:text="White coated"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="196dp"
+            android:text="Design Description"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.043"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="382dp"
+            android:layout_height="166dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="give description about design"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Installation"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.041"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="102dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="104dp"
+            android:text="Quantity"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.036"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="259dp"
+            android:layout_height="105dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.073"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView20">
+
+            <RadioButton
+                android:id="@+id/yesradio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="checkbutton"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/noradio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="checkbutton"
+                android:text="No" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/quantity"
+            android:layout_width="102dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="12dp"
+            android:background="#949591"
+            android:backgroundTint="#B5AFAF"
+            android:ems="10"
+            android:hint="quantity"
+            android:inputType="number"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.035"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+        <FrameLayout
+            android:layout_width="408dp"
+            android:layout_height="111dp"
+            android:layout_marginTop="20dp"
+            android:background="#880A35"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/quantity">
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="10dp"
+                android:text="Total Amount"
+                android:textColor="#FDFDFD"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/add_btn"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="#3F51B5"
+                android:text="Add to cart" />
+
+            <TextView
+                android:id="@+id/Price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="300dp"
+                android:layout_marginTop="10dp"
+                android:text="Price"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

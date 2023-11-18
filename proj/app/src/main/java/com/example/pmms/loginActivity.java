@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.pmms.data.MyDbHandler;
+import com.example.pmms.params.Params;
 
 public class loginActivity extends AppCompatActivity {
     EditText s_Uname,s_pass;
@@ -47,6 +48,12 @@ public class loginActivity extends AppCompatActivity {
                         Toast.makeText(loginActivity.this,"Sign in successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), MainmenuActivity.class);
                         startActivity(intent);
+
+//                        int valueToPass = 1;
+
+//                        Intent intent2 = new Intent(loginActivity.this, posterActivity.class);
+//                        intent2.putExtra("keyName", valueToPass);
+//                        startActivity(intent2);
                     }
                     else {
                         Toast.makeText(loginActivity.this,"Invalid Credentials", Toast.LENGTH_SHORT).show();
