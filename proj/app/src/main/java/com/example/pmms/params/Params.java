@@ -26,6 +26,7 @@ public class Params {
     public static final String KEY_DESCRIPTION = "Description";
     public static final String KEY_INSTALLATION = "Installation";
     public static final String KEY_PRICE = "Price";
-    public static final String KEY_CUSTOMERID = "CustomerId";
+//    public static final String KEY_CUSTOMERID = "CustomerId";
+    public static final String KEY_QUANTITY = "Quantity";
 
 }

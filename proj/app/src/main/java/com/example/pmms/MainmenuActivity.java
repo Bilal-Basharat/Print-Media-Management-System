@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainmenuActivity extends AppCompatActivity {
         ImageButton prev,next;
@@ -18,6 +19,16 @@ public class MainmenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
+        Intent intent = getIntent();
+        if (intent.hasExtra("USERNAME")) {
+            String username = intent.getStringExtra("USERNAME");
+            Toast.makeText(this, "Welcome, " + username + "!", Toast.LENGTH_SHORT).show();
+
+            // Open posterActivity
+//            Intent posterIntent = new Intent(this, posterActivity.class);
+//            posterIntent.putExtra("USERNAME", username); // Pass username to posterActivity
+//            startActivity(posterIntent);
+        }
     }
     public void prev(View v){
 
@@ -73,8 +84,14 @@ public class MainmenuActivity extends AppCompatActivity {
     }
     public void poster(View v)
     {
-        Intent intent = new Intent(this, posterActivity.class);
-        startActivity(intent);
+        Intent intent = getIntent();
+        if (intent.hasExtra("USERNAME")) {
+            String username = intent.getStringExtra("USERNAME");
+            Toast.makeText(this, "Welcome, " + username + "!", Toast.LENGTH_SHORT).show();
+        }
+        Intent intent2 = new Intent(this, posterActivity.class);
+        startActivity(intent2);
+
     }
     public void Banners(View v)
     {

@@ -31,6 +31,7 @@ public class loginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Sign_UpScreen(view);
             }
+
         });
         signIn_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,15 +46,20 @@ public class loginActivity extends AppCompatActivity {
                     Boolean checkuser = db.checkuserandpass(username,Password);
                     if (checkuser == true)
                     {
-                        Toast.makeText(loginActivity.this,"Sign in successfully", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), MainmenuActivity.class);
-                        startActivity(intent);
 
-//                        int valueToPass = 1;
-
-//                        Intent intent2 = new Intent(loginActivity.this, posterActivity.class);
-//                        intent2.putExtra("keyName", valueToPass);
-//                        startActivity(intent2);
+                          Toast.makeText(loginActivity.this,"Sign in successfully", Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(getApplicationContext(), MainmenuActivity.class);
+//
+//
+////                        int valueToPass = 1;
+//
+//                        startActivity(intent);
+//                        Intent intent = new Intent(getApplicationContext(), posterActivity.class);
+//                        intent.putExtra("USERNAME", username);
+//                        startActivity(intent);
+                        Intent mainIntent = new Intent(getApplicationContext(), MainmenuActivity.class);
+                        mainIntent.putExtra("USERNAME", username);
+                        startActivity(mainIntent);
                     }
                     else {
                         Toast.makeText(loginActivity.this,"Invalid Credentials", Toast.LENGTH_SHORT).show();
@@ -63,6 +69,8 @@ public class loginActivity extends AppCompatActivity {
         });
 //
     }
+
+
     public void Sign_UpScreen(View view)
     {
         Intent intent = new Intent(this, MainActivity.class);

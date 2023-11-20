@@ -8,8 +8,17 @@ public class Things {
     private String Paper;
     private String Description;
     private String Installation;
-    private int CustomerId;
+
     private int Price;
+    private int Quantity;
+
+    public int getQuantity() {
+        return Quantity;
+    }
+
+    public void setQuantity(int Quantity) {
+        this.Quantity = Quantity;
+    }
 
     public void setPrice(int Price) {
         this.Price = Price;
@@ -19,15 +28,10 @@ public class Things {
         return Price;
     }
 
-    public void setCustomerId(int CustomerId) {
-        this.CustomerId = CustomerId;
-    }
 
-    public int getCustomerId() {
-        return CustomerId;
-    }
 
-    public Things(int TId, String Type, String Size, String PrintingOrient, String Paper, String Description, String Installation, int CustomerId,int Price) {
+
+    public Things(int TId, String Type, String Size, String PrintingOrient, String Paper, String Description, String Installation, int Price, int Quantity) {
         this.TId = TId;
         this.Type = Type;
         this.Size = Size;
@@ -35,8 +39,9 @@ public class Things {
         this.Paper = Paper;
         this.Description = Description;
         this.Installation = Installation;
-        this.CustomerId=CustomerId;
+
         this.Price=Price;
+        this.Quantity=Quantity;
     }
     public Things() {
 

@@ -47,9 +47,10 @@
                 android:layout_width="40dp"
                 android:layout_height="55dp"
                 android:layout_marginLeft="20dp"
+
                 android:background="#FFFFFF"
                 android:contentDescription="@string/app_name"
-                android:onClick="outdoorposter"
+                android:onClick="onSizeButtonClick"
                 android:src="@drawable/iconpage"
                 tools:src="@drawable/iconpage"
                 tools:srcCompat="@drawable/iconpage" />
@@ -191,7 +192,7 @@
                 android:layout_marginLeft="20dp"
                 android:background="#FFFFFF"
                 android:contentDescription="@string/app_name"
-                android:onClick="outdoorposter"
+                android:onClick="onSizeButtonClick"
                 android:src="@drawable/iconpage"
                 tools:src="@drawable/iconpage"
                 tools:srcCompat="@drawable/iconpage" />
@@ -224,7 +225,7 @@
                 android:layout_marginLeft="20dp"
                 android:background="#FFFFFF"
                 android:contentDescription="@string/app_name"
-                android:onClick="outdoorposter"
+                android:onClick="onSizeButtonClick"
                 android:src="@drawable/iconpage"
                 tools:src="@drawable/iconpage"
                 tools:srcCompat="@drawable/iconpage" />
@@ -255,7 +256,7 @@
                 android:layout_marginLeft="20dp"
                 android:background="#FFFFFF"
                 android:contentDescription="@string/app_name"
-                android:onClick="outdoorposter"
+                android:onClick="onSizeButtonClick"
                 android:src="@drawable/iconpage"
                 tools:src="@drawable/iconpage"
                 tools:srcCompat="@drawable/iconpage" />
@@ -301,6 +302,7 @@
                 android:layout_height="55dp"
                 android:layout_marginLeft="20dp"
                 android:background="#FFFFFF"
+                android:onClick="onorientButtonClick"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/iconport"
                 tools:src="@drawable/iconport"
@@ -335,6 +337,7 @@
                 android:layout_height="55dp"
                 android:layout_marginLeft="20dp"
                 android:background="#FFFFFF"
+                android:onClick="onorientButtonClick"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/land"
                 tools:src="@drawable/land"
@@ -382,6 +385,7 @@
                 android:layout_height="55dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
+                android:onClick="onpaperButtonClick"
                 android:background="#FFFFFF"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/material"
@@ -418,6 +422,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:background="#FFFFFF"
+                android:onClick="onpaperButtonClick"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/material"
                 tools:src="@drawable/material"
@@ -451,6 +456,7 @@
                 android:layout_marginTop="10dp"
                 android:background="#FFFFFF"
                 android:contentDescription="@string/app_name"
+                android:onClick="onpaperButtonClick"
                 android:src="@drawable/material"
                 tools:src="@drawable/material"
                 tools:srcCompat="@drawable/material" />
@@ -560,6 +566,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
         <FrameLayout
+            android:id="@+id/frameLayout8"
             android:layout_width="408dp"
             android:layout_height="111dp"
             android:layout_marginTop="20dp"
@@ -600,6 +607,19 @@
                 android:textSize="18dp"
                 android:textStyle="bold" />
         </FrameLayout>
+
+        <Button
+            android:id="@+id/tick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="198dp"
+            android:layout_marginBottom="13dp"
+            android:backgroundTint="#3F51B5"
+            android:text="done"
+            app:layout_constraintBottom_toTopOf="@+id/frameLayout8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/quantity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

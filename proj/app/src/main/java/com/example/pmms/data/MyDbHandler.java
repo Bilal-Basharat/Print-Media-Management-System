@@ -1,4 +1,5 @@
 package com.example.pmms.data;
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -26,22 +27,34 @@ public class MyDbHandler extends SQLiteOpenHelper {
                 + " TEXT, " + Params.KEY_ADDRESS + " TEXT, "+ Params.KEY_CONTACT
                 + " TEXT" +")";
         Log.d("dbPRINT", "Query being run is : "+ create);
-        db.execSQL(create);
-        String create2 = "CREATE TABLE " + Params.TABLE_NAME2 + "("
+
+//        String create2 = "CREATE TABLE " + Params.TABLE_NAME2 + "("
+//                + Params.KEY_TID + " INTEGER PRIMARY KEY," + Params.KEY_TYPE
+//                + " TEXT, " + Params.KEY_SIZE + " TEXT, "  + Params.KEY_PRINTING
+//                + " TEXT, " + Params.KEY_PAPER + " TEXT, "+ Params.KEY_DESCRIPTION
+//                + " TEXT, " + Params.KEY_INSTALLATION + " TEXT, "+ Params.KEY_CUSTOMERID
+//                + " INTEGER REFERENCES" + Params.TABLE_NAME + "(" + Params.KEY_ID + ")" + Params.KEY_PRICE + Params.KEY_QUANTITY+")";
+//        Log.d("dbthing", "Query being run is : "+ create2);
+//
+//        db.execSQL(create2);
+        String create2 = "CREATE TABLE " + "Things_Table" + "("
                 + Params.KEY_TID + " INTEGER PRIMARY KEY," + Params.KEY_TYPE
                 + " TEXT, " + Params.KEY_SIZE + " TEXT, "  + Params.KEY_PRINTING
                 + " TEXT, " + Params.KEY_PAPER + " TEXT, "+ Params.KEY_DESCRIPTION
-                + " TEXT, " + Params.KEY_INSTALLATION + " TEXT, "+ Params.KEY_CUSTOMERID
-                + " INTEGER REFERENCES" + Params.TABLE_NAME + "(" + Params.KEY_ID + ")" + Params.KEY_PRICE +")";
+                + " TEXT, " + Params.KEY_INSTALLATION + " TEXT, "
+                + Params.KEY_PRICE + " INTEGER, " + Params.KEY_QUANTITY + " INTEGER"+")";
         Log.d("dbthing", "Query being run is : "+ create2);
-
+        db.execSQL(create);
         db.execSQL(create2);
 
 
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS user_table");
+        db.execSQL("DROP TABLE IF EXISTS Things_Table");
+        onCreate(db);
 
     }
     public void addUser(PrintMedia users)
@@ -71,12 +84,55 @@ public class MyDbHandler extends SQLiteOpenHelper {
         values.put(Params.KEY_PAPER, things.getPaper());
         values.put(Params.KEY_DESCRIPTION, things.getDescription());
         values.put(Params.KEY_INSTALLATION, things.getInstallation());
-        values.put(Params.KEY_CUSTOMERID, things.getCustomerId());
         values.put(Params.KEY_PRICE, things.getPrice());
+        values.put(Params.KEY_QUANTITY,things.getQuantity());
         db.insert(Params.TABLE_NAME2, null, values);
-        Log.d("dbthing", "Successfully inserted");
+        Log.d("dbthing", "success");
         db.close();
     }
+//public void addThings(String type,String size, String orin, String paper,String descrip, String install,int price,int Quantity)
+//    {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues values = new ContentValues();
+//        values.put(Params.KEY_TYPE, type);
+//        values.put(Params.KEY_SIZE, size);
+//        values.put(Params.KEY_PRINTING, orin);
+//        values.put(Params.KEY_PAPER, paper);
+//        values.put(Params.KEY_DESCRIPTION, descrip);
+//        values.put(Params.KEY_INSTALLATION, install);
+//
+//        values.put(Params.KEY_PRICE, price);
+//        values.put(Params.KEY_QUANTITY,Quantity);
+//       db.insert(Params.TABLE_NAME2,null,values);
+//        db.close();
+//    }
+
+//    public int getCustomerIdByUsername(String username) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        int customerID = -1; // Default value if not found
+//
+//        Cursor cursor = db.rawQuery("SELECT " + Params.KEY_ID + " FROM " + Params.TABLE_NAME +
+//                " WHERE " + Params.KEY_UNAME + "=?", new String[]{username});
+//
+//        if (cursor != null) {
+//            if (cursor.moveToFirst()) {
+//                int columnIndex = cursor.getColumnIndex(Params.KEY_ID);
+//                if (columnIndex != -1) {
+//                    customerID = cursor.getInt(columnIndex);
+//                    Log.d("dbthing", "Retrieved customerID: " + customerID);
+//                } else {
+//                    Log.e("dbthing", "Column index not found for " + Params.KEY_ID);
+//                }
+//            }
+//            cursor.close();
+//        }
+//
+//        db.close(); // Close the database connection
+//        return customerID;
+//    }
+
+
+
 
     public boolean checkuserandpass(String username,String password)
     {
