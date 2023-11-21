@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/CartScreen.dart';
+import 'package:project/UserInfoInputScreen.dart';
 void main() {
   runApp(MyApp());
 }
@@ -26,7 +27,9 @@ class _OutdoorPosterPageState extends State<OutdoorPosterPage> {
   int price = 0;
   String installationOption = '';
   String designDescription = ''; // Variable to store the design description
-  String type = 'outdoorposter'; // Variable to store the type
+  String type = 'outdoorposter';
+
+  // Variable to store the type
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -208,22 +211,35 @@ class _OutdoorPosterPageState extends State<OutdoorPosterPage> {
               ),
               SizedBox(height: 16.0),
               ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
+                onPressed: () async {
+                  UserInfo userInfo = await Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => CartScreen(
-                        selectedSize: selectedSize,
-                        selectedOrientation: selectedOrientation,
-                        selectedPaper: selectedPaper,
-                        quantity: quantity,
-                        price: price,
-                        installationOption: installationOption,
-                        designDescription: designDescription,
-                        type: type, // Pass the type to CartScreen
-                      ),
-                    ),
+                    MaterialPageRoute(builder: (context) => UserInfoInputScreen()),
                   );
+
+                  if (userInfo != null) {
+                    // User has provided information, navigate to CartScreen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CartScreen(
+                          selectedSize: selectedSize,
+                          selectedOrientation: selectedOrientation,
+                          selectedPaper: selectedPaper,
+                          quantity: quantity,
+                          price: price,
+                          installationOption: installationOption,
+                          designDescription: designDescription,
+                          type: type,
+                          email: userInfo.email,
+                          name: userInfo.name,
+                          contact: userInfo.contact,
+                          address: userInfo.address,
+                          carddetails: userInfo.cardDetails,
+                        ),
+                      ),
+                    );
+                  }
                 },
                 child: Text('Add to Cart'),
               ),

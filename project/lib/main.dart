@@ -45,7 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         "address":_addressController.text,
         "contact":_contactController.text
       };
-      var response = await http.post(Uri.parse('http://192.168.51.207:3000/api/users/register'),
+      var response = await http.post(Uri.parse('http://192.168.0.103:3000/api/users/register'),
           headers: {"Content-Type":"application/json"},
           body: jsonEncode(regBody)
 
@@ -60,6 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text('Sign Up'),
       ),
       body: SingleChildScrollView(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project/CartScreen.dart';
+import 'package:project/UserInfoInputScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +27,8 @@ class _BannerPosterPageState extends State<BannerPosterPage> {
   int quantity = 0;
   int price = 0;
   String installationOption = '';
-  String designDescription = ''; // Variable to store the design description
+  String designDescription = '';
+  String type='Banner';// Variable to store the design description
 
   @override
   Widget build(BuildContext context) {
@@ -208,11 +211,35 @@ class _BannerPosterPageState extends State<BannerPosterPage> {
               ),
               SizedBox(height: 16.0),
               ElevatedButton(
-                onPressed: () {
-                  // Add to cart logic
-                  // You can use the selectedSize, selectedOrientation, selectedPaper,
-                  // installationOption, quantity, price, and designDescription variables
-                  // to perform further actions.
+                onPressed: () async {
+                  UserInfo userInfo = await Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UserInfoInputScreen()),
+                  );
+
+                  if (userInfo != null) {
+                    // User has provided information, navigate to CartScreen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CartScreen(
+                          selectedSize: selectedSize,
+                          selectedOrientation: selectedOrientation,
+                          selectedPaper: selectedPaper,
+                          quantity: quantity,
+                          price: price,
+                          installationOption: installationOption,
+                          designDescription: designDescription,
+                          type: type,
+                          email: userInfo.email,
+                          name: userInfo.name,
+                          contact: userInfo.contact,
+                          address: userInfo.address,
+                          carddetails: userInfo.cardDetails,
+                        ),
+                      ),
+                    );
+                  }
                 },
                 child: Text('Add to Cart'),
               ),

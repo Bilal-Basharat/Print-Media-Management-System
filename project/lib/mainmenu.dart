@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/Outdoorposter.dart';
 import 'package:project/Banner.dart';
+import 'package:project/login.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,11 +15,12 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class MainmenuActivity extends StatefulWidget {
-  const MainmenuActivity({super.key});
+  const MainmenuActivity({Key? key}) : super(key: key);
 
   @override
-  State<MainmenuActivity> createState() => _MainmenuActivityState();
+  _MainmenuActivityState createState() => _MainmenuActivityState();
 }
 
 class _MainmenuActivityState extends State<MainmenuActivity> {
@@ -28,6 +30,51 @@ class _MainmenuActivityState extends State<MainmenuActivity> {
       appBar: AppBar(
         title: Text('Print Express'),
         backgroundColor: Color(0xFF880A35),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.person),
+            onPressed: () {
+              // Handle the profile button press
+            },
+          ),
+        ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+
+            ListTile(
+              leading: Icon(Icons.info),
+              title: Text('About Us'),
+              onTap: () {
+                // Handle the "About Us" button press
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.contact_phone),
+              title: Text('Contact'),
+              onTap: () {
+                // Handle the "Contact" button press
+              },
+            ),
+            Divider(), // Add a divider
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Logout'),
+              onTap: () {
+                // Handle the "Logout" button press
+                // You can perform the logout logic here
+                // For example, navigate to the login screen
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage(), // Replace with your login screen
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

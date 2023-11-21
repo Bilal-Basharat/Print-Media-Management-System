@@ -5,6 +5,7 @@ import 'package:project/mainmenu.dart';
 import 'package:project/DesignerScreen.dart';
 import 'package:project/PrinterScreen.dart';
 import 'package:project/AdminScreen.dart';
+import 'package:project/main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'main.dart'; // Create a home page file as well
@@ -114,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
           };
 
           var response = await http.post(
-            Uri.parse('http://192.168.51.207:3000/api/users/login'),
+            Uri.parse('http://192.168.0.103:3000/api/users/login'),
             headers: {"Content-Type": "application/json"},
             body: jsonEncode(regBody),
           );
@@ -174,6 +175,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text('Login Page'),
       ),
       body: Padding(
@@ -232,6 +234,26 @@ class _LoginPageState extends State<LoginPage> {
                 // }
               },
               child: Text('Login'),
+            ),
+            SizedBox(height: 16.0),
+            GestureDetector(
+              onTap: () {
+
+                // Navigate to the login screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SignUpScreen(),
+                  ),
+                );
+              },
+              child: Text(
+                'Create an Account? Sign Up',
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
             ),
           ],
         ),
