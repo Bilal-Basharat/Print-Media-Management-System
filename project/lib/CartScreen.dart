@@ -36,6 +36,27 @@ class CartScreen extends StatelessWidget {
     required this.address,
     required this.carddetails,
   });
+
+  Future<void> showOrderPlacedDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Order Placed'),
+          content: Text('Order Placed Successfully!'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+                // Clear the text fields
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
   void additems()async{
     var regBody = {
       "type":type,
@@ -211,10 +232,8 @@ class CartScreen extends StatelessWidget {
               onPressed: () {
                 additems(); // Call the function to add items to the server
                 // You can also perform any other actions related to placing the order here
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => OrderPlacedScreen()),
-                );
+                showOrderPlacedDialog(context);
+
               },
 
               child: Text('Place Order'),

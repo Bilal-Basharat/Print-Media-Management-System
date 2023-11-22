@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:project/CartScreen.dart';
 import 'package:project/UserInfoInputScreen.dart';
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: OutdoorPosterPage(),
-    );
-  }
-}
+// void main() {
+//   runApp(MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: OutdoorPosterPage(),
+//     );
+//   }
+// }
 
 class OutdoorPosterPage extends StatefulWidget {
+
   @override
   _OutdoorPosterPageState createState() => _OutdoorPosterPageState();
 }

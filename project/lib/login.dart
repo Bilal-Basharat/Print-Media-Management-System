@@ -7,6 +7,7 @@ import 'package:project/PrinterScreen.dart';
 import 'package:project/AdminScreen.dart';
 import 'package:project/main.dart';
 import 'package:http/http.dart' as http;
+import 'user_model.dart';
 import 'dart:convert';
 import 'main.dart'; // Create a home page file as well
 
@@ -35,51 +36,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  // void loginUser() async {
-  //   if (!_emailController.text.isEmpty || !_passwordController.text.isEmpty) {
-  //     var regBody = {
-  //       "email": _emailController.text,
-  //       "password": _passwordController.text,
-  //     };
-  //
-  //     var response = await http.post(
-  //       Uri.parse('http://192.168.51.207:3000/api/users/login'),
-  //       headers: {"Content-Type": "application/json"},
-  //       body: jsonEncode(regBody),
-  //     );
-  //
-  //     if (response.statusCode == 200) {
-  //       // Successful login
-  //       print('Login successful');
-  //       Navigator.pushReplacement(
-  //         context,
-  //         MaterialPageRoute(
-  //           builder: (context) => MainmenuActivity(),
-  //         ),
-  //       );
-  //     } else {
-  //       // Unsuccessful login
-  //       print('Login failed');
-  //       showDialog(
-  //         context: context,
-  //         builder: (context) => AlertDialog(
-  //           title: Text('Error'),
-  //           content: Text('Invalid credentials'),
-  //           actions: [
-  //             TextButton(
-  //               onPressed: () {
-  //                 Navigator.pop(context);
-  //               },
-  //               child: Text('OK'),
-  //             ),
-  //           ],
-  //         ),
-  //       );
-  //     }
-  //   } else {
-  //     // Handle empty fields
-  //   }
-  // }
+
   void loginUser() async {
 
         // Check the email and password to determine the role
@@ -123,31 +80,15 @@ class _LoginPageState extends State<LoginPage> {
           if (response.statusCode == 200) {
             // Successful login
             print('Login successful');
+            // var userData = json.decode(response.body);
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => MainmenuActivity(),
+                builder: (context) => MainmenuActivity( userEmail: _emailController.text,
+                  userPassword: _passwordController.text,),
+
               ),
             );}
-        //   else {
-        //   // Invalid credentials
-        //   print('Invalid credentials');
-        //   showDialog(
-        //     context: context,
-        //     builder: (context) => AlertDialog(
-        //       title: Text('Error'),
-        //       content: Text('Invalid credentials'),
-        //       actions: [
-        //         TextButton(
-        //           onPressed: () {
-        //             Navigator.pop(context);
-        //           },
-        //           child: Text('OK'),
-        //         ),
-        //       ],
-        //     ),
-        //   );
-        // }
       }
           else {
         // Unsuccessful login
@@ -205,33 +146,6 @@ class _LoginPageState extends State<LoginPage> {
                 String email = _emailController.text.trim();
                 String password = _passwordController.text.trim();
 
-                // Check username and password (you may want to connect to a backend for validation)
-                // if (email == 'example' && password == 'password') {
-                //   Navigator.pushReplacement(
-                //     context,
-                //     MaterialPageRoute(
-                //        builder: (context) => MainmenuActivity(),
-                //     ),
-                //   );
-                // }
-                // else {
-                //   // Show an error message or handle invalid credentials
-                //   showDialog(
-                //     context: context,
-                //     builder: (context) => AlertDialog(
-                //       title: Text('Error'),
-                //       content: Text('Invalid credentials'),
-                //       actions: [
-                //         TextButton(
-                //           onPressed: () {
-                //             Navigator.pop(context);
-                //           },
-                //           child: Text('OK'),
-                //         ),
-                //       ],
-                //     ),
-                //   );
-                // }
               },
               child: Text('Login'),
             ),

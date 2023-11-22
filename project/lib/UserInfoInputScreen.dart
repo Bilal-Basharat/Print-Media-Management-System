@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class UserInfoInputScreen extends StatefulWidget {
+
   @override
   _UserInfoInputScreenState createState() => _UserInfoInputScreenState();
 }

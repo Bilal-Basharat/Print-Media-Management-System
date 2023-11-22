@@ -2,22 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:project/Outdoorposter.dart';
 import 'package:project/Banner.dart';
 import 'package:project/login.dart';
+import 'package:project/ProfileScreen.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MainmenuActivity(),
-    );
-  }
-}
+// void main() {
+//   runApp(MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: MainmenuActivity(),
+//     );
+//   }
+// }
 
 class MainmenuActivity extends StatefulWidget {
-  const MainmenuActivity({Key? key}) : super(key: key);
+  // const MainmenuActivity({Key? key}) : super(key: key);
+  final String userEmail;
+  final String userPassword;
+
+
+
+  MainmenuActivity({required this.userEmail, required this.userPassword});
+
 
   @override
   _MainmenuActivityState createState() => _MainmenuActivityState();
@@ -34,6 +42,13 @@ class _MainmenuActivityState extends State<MainmenuActivity> {
           IconButton(
             icon: Icon(Icons.person),
             onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfileScreen(userEmail: widget.userEmail,
+                    userPassword: widget.userPassword,),
+                ),
+              );
               // Handle the profile button press
             },
           ),
@@ -155,10 +170,4 @@ class _MainmenuActivityState extends State<MainmenuActivity> {
     );
   }
 }
-
-
-
-
-
-// Add similar methods for other onTap actions
 
