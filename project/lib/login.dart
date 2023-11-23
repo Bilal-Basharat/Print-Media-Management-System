@@ -7,6 +7,7 @@ import 'package:project/PrinterScreen.dart';
 import 'package:project/AdminScreen.dart';
 import 'package:project/main.dart';
 import 'package:http/http.dart' as http;
+import 'package:project/JobsScreen.dart';
 import 'user_model.dart';
 import 'dart:convert';
 import 'main.dart'; // Create a home page file as well
@@ -38,57 +39,56 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController _passwordController = TextEditingController();
 
   void loginUser() async {
-
-        // Check the email and password to determine the role
-        if (_emailController.text == 'admin@yahoo.com' &&
-            _passwordController.text == 'admin') {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AdminScreen(),
-            ),
-          );
-        } if (_emailController.text == 'designer@gmail.com' &&
-            _passwordController.text == 'd123') {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DesignerScreen(),
-            ),
-          );
-        } if (_emailController.text == 'printer@example.com' &&
-            _passwordController.text == 'p123') {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => PrinterScreen(),
-            ),
-          );
-        }
         if (!_emailController.text.isEmpty || !_passwordController.text.isEmpty) {
           var regBody = {
             "email": _emailController.text,
             "password": _passwordController.text,
           };
-
           var response = await http.post(
-            Uri.parse('http://192.168.0.103:3000/api/users/login'),
+            Uri.parse('http://192.168.0.103:3000/api/users/loginf'),
             headers: {"Content-Type": "application/json"},
             body: jsonEncode(regBody),
           );
 
           if (response.statusCode == 200) {
-            // Successful login
-            print('Login successful');
-            // var userData = json.decode(response.body);
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => MainmenuActivity( userEmail: _emailController.text,
-                  userPassword: _passwordController.text,),
-
-              ),
-            );}
+            var userData = json.decode(response.body);
+            if (userData.containsKey("role")) {
+              String userRole = userData["role"];
+              switch (userRole) {
+                case "user":
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          MainmenuActivity(
+                            userEmail: _emailController.text,
+                            userPassword: _passwordController.text,
+                          ),
+                    ),
+                  );
+                  break;
+                case "designer":
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DesignerScreen(),
+                    ),
+                  );
+                  break;
+                case "printer":
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PrinterScreen(),
+                    ),
+                  );
+                  break;
+                default:
+                // Handle other roles or show an error
+                  print('Unknown role: $userRole');
+              }
+            }
+            }
       }
           else {
         // Unsuccessful login
@@ -163,6 +163,26 @@ class _LoginPageState extends State<LoginPage> {
               },
               child: Text(
                 'Create an Account? Sign Up',
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
+            SizedBox(height: 30.0),
+            GestureDetector(
+              onTap: () {
+
+                // Navigate to the login screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => JobScreen(),
+                  ),
+                );
+              },
+              child: Text(
+                'Apply for designer or printer',
                 style: TextStyle(
                   color: Colors.blue,
                   decoration: TextDecoration.underline,

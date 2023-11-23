@@ -4,25 +4,13 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'config.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
+class JobScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SignUpScreen(),
-    );
-  }
+  _JobScreenState createState() => _JobScreenState();
 }
 
-class SignUpScreen extends StatefulWidget {
-  @override
-  _SignUpScreenState createState() => _SignUpScreenState();
-}
-
-class _SignUpScreenState extends State<SignUpScreen> {
+class _JobScreenState extends State<JobScreen> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -30,12 +18,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _contactController = TextEditingController();
-  final role='user';
+  String _selectedRole='';
   // bool isnotvalid = false;
   void registerUser() async
   {
     if( !_emailController.text.isEmpty || !_passwordController.text.isEmpty ||
-    !_firstNameController.text.isEmpty || !_lastNameController.text.isEmpty || !_addressController.text.isEmpty || !_contactController.text.isEmpty)
+        !_firstNameController.text.isEmpty || !_lastNameController.text.isEmpty || !_addressController.text.isEmpty || !_contactController.text.isEmpty || !_selectedRole.isEmpty)
     {
       var regBody = {
 
@@ -45,7 +33,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         "lastname":_lastNameController.text,
         "address":_addressController.text,
         "contact":_contactController.text,
-        "role":role
+        "role":_selectedRole
       };
       var response = await http.post(Uri.parse('http://192.168.0.103:3000/api/users/register'),
           headers: {"Content-Type":"application/json"},
@@ -63,7 +51,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('Sign Up'),
+        title: Text('Careers'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -106,6 +94,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 keyboardType: TextInputType.phone,
               ),
               SizedBox(height: 32.0),
+              DropdownButton<String>(
+                value: _selectedRole,
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedRole = newValue!;
+                  });
+                },
+                items: <String>['printer', 'designer','user'] // Add 'user' or remove it if not needed
+                    .map<DropdownMenuItem<String>>(
+                      (String value) => DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  ),
+                )
+                    .toList(),
+              ),
+              SizedBox(height: 32.0),
               ElevatedButton(
 
                 onPressed: () {
@@ -137,8 +142,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   // print('Address: $address');
                   // print('Contact: $contact');
                 },
-                child: Text('Sign Up'),
+                child: Text('Apply'),
               ),
+
               SizedBox(height: 16.0),
               GestureDetector(
                 onTap: () {

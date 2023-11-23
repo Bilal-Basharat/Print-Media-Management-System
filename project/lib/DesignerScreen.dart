@@ -1,292 +1,9 @@
-// import 'package:flutter/material.dart';
-// import 'package:project/CartScreen.dart';
-// void main() {
-//   runApp(MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: DesignerScreen(),
-//     );
-//   }
-// }
-//
-// class DesignerScreen extends StatefulWidget {
-//   @override
-//   _DesignerScreenState createState() => _DesignerScreenState();
-// }
-//
-// class _DesignerScreenState extends State<DesignerScreen> {
-//   String selectedSize = '';
-//   String selectedOrientation = '';
-//   String selectedPaper = '';
-//   int quantity = 0;
-//   int price = 0;
-//   String installationOption = '';
-//   String designDescription = ''; // Variable to store the design description
-//   String type = 'designerposter'; // Variable to store the type
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('designer Poster'),
-//         backgroundColor: Color(0xFF880A35),
-//       ),
-//       body: SingleChildScrollView(
-//         child: Padding(
-//           padding: const EdgeInsets.all(16.0),
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.stretch,
-//             children: [
-//               Text(
-//                 'Size',
-//                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-//               ),
-//               SizedBox(height: 16.0),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                 children: [
-//                   PosterButton(
-//                     image: 'assets/images/img1.png',
-//                     text: 'A4',
-//                     onTap: () {
-//                       setState(() {
-//                         selectedSize = 'A4';
-//                       });
-//                     },
-//                   ),
-//                   PosterButton(
-//                     image: 'assets/images/img1.png',
-//                     text: 'A3',
-//                     onTap: () {
-//                       setState(() {
-//                         selectedSize = 'A3';
-//                       });
-//                     },
-//                   ),
-//                   PosterButton(
-//                     image: 'assets/images/img1.png',
-//                     text: 'A2',
-//                     onTap: () {
-//                       setState(() {
-//                         selectedSize = 'A2';
-//                       });
-//                     },
-//                   ),
-//                   PosterButton(
-//                     image: 'assets/images/img1.png',
-//                     text: 'B1',
-//                     onTap: () {
-//                       setState(() {
-//                         selectedSize = 'B1';
-//                       });
-//                     },
-//                   ),
-//                 ],
-//               ),
-//               Text(
-//                 'Paper Orientation',
-//                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-//               ),
-//               SizedBox(height: 16.0),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                 children: [
-//                   PosterButton(
-//                     image: 'assets/images/img1.png',
-//                     text: 'Portrait',
-//                     onTap: () {
-//                       setState(() {
-//                         selectedOrientation = 'Portrait';
-//                       });
-//                     },
-//                   ),
-//                   PosterButton(
-//                     image: 'assets/images/img1.png',
-//                     text: 'Landscape',
-//                     onTap: () {
-//                       setState(() {
-//                         selectedOrientation = 'Landscape';
-//                       });
-//                     },
-//                   ),
-//                 ],
-//               ),
-//               Text(
-//                 'Paper',
-//                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-//               ),
-//               SizedBox(height: 16.0),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                 children: [
-//                   PosterButton(
-//                     image: 'assets/images/img1.png',
-//                     text: 'Magistra Deluxe Blueback',
-//                     onTap: () {
-//                       setState(() {
-//                         selectedPaper = 'Magistra Deluxe Blueback';
-//                       });
-//                     },
-//                   ),
-//                 ],
-//               ),
-//               SizedBox(height: 16.0),
-//               Text(
-//                 'Design Description',
-//                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-//               ),
-//               SizedBox(height: 16.0),
-//               TextField(
-//                 decoration: InputDecoration(
-//                   hintText: 'Enter design description...',
-//                   border: OutlineInputBorder(),
-//                 ),
-//                 maxLines: null, // Allows multiline input
-//                 onChanged: (value) {
-//                   setState(() {
-//                     designDescription = value;
-//                   });
-//                 },
-//               ),
-//               SizedBox(height: 16.0),
-//               Text(
-//                 'Installation',
-//                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-//               ),
-//               SizedBox(height: 16.0),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                 children: [
-//                   Radio(
-//                     value: 'Yes',
-//                     groupValue: installationOption,
-//                     onChanged: (value) {
-//                       setState(() {
-//                         installationOption = value as String;
-//                       });
-//                     },
-//                   ),
-//                   Text('Yes'),
-//                   Radio(
-//                     value: 'No',
-//                     groupValue: installationOption,
-//                     onChanged: (value) {
-//                       setState(() {
-//                         installationOption = value as String;
-//                       });
-//                     },
-//                   ),
-//                   Text('No'),
-//                 ],
-//               ),
-//               SizedBox(height: 16.0),
-//               Text(
-//                 'Quantity',
-//                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-//               ),
-//               SizedBox(height: 16.0),
-//               TextField(
-//                 decoration: InputDecoration(
-//                   hintText: 'Enter quantity...',
-//                   border: OutlineInputBorder(),
-//                 ),
-//                 keyboardType: TextInputType.number,
-//                 onChanged: (value) {
-//                   setState(() {
-//                     quantity = int.tryParse(value) ?? 0;
-//                     price = quantity * 300;
-//                   });
-//                 },
-//               ),
-//               SizedBox(height: 16.0),
-//               Text(
-//                 'Price: \$${price.toString()}',
-//                 style: TextStyle(fontSize: 18.0),
-//               ),
-//               SizedBox(height: 16.0),
-//               ElevatedButton(
-//                 onPressed: () {
-//                   Navigator.push(
-//                     context,
-//                     MaterialPageRoute(
-//                       builder: (context) => CartScreen(
-//                         selectedSize: selectedSize,
-//                         selectedOrientation: selectedOrientation,
-//                         selectedPaper: selectedPaper,
-//                         quantity: quantity,
-//                         price: price,
-//                         installationOption: installationOption,
-//                         designDescription: designDescription,
-//                         type: type, // Pass the type to CartScreen
-//                       ),
-//                     ),
-//                   );
-//                 },
-//                 child: Text('Add to Cart'),
-//               ),
-//
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-//
-// class PosterButton extends StatelessWidget {
-//   final String image;
-//   final String text;
-//   final VoidCallback? onTap;
-//
-//   PosterButton({required this.image, required this.text, this.onTap});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         GestureDetector(
-//           onTap: onTap,
-//           child: Card(
-//             color: Colors.white,
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 Image.asset(
-//                   image,
-//                   width: 82.0,
-//                   height: 89.0,
-//                 ),
-//                 SizedBox(height: 10.0),
-//                 Text(
-//                   text,
-//                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
-import 'package:flutter/material.dart';
-import 'package:project/CartScreen.dart';
-import 'package:project/UserInfoInputScreen.dart';
-void main() {
-  runApp(MyApp());
-}
+// designer_screen.dart
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DesignerScreen(),
-    );
-  }
-}
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'task.dart';
 
 class DesignerScreen extends StatefulWidget {
   @override
@@ -294,272 +11,96 @@ class DesignerScreen extends StatefulWidget {
 }
 
 class _DesignerScreenState extends State<DesignerScreen> {
-  String selectedSize = '';
-  String selectedOrientation = '';
-  String selectedPaper = '';
-  int quantity = 0;
-  int price = 0;
-  String installationOption = '';
-  String designDescription = ''; // Variable to store the design description
-  String type = 'outdoorposter';
+  Task? _tasks;
+  List<Task> _task = [];
 
-  // Variable to store the type
+  @override
+  void initState() {
+    super.initState();
+    fetchTasks();
+  }
+
+  Future<void> fetchTasks() async {
+    try {
+      final response = await http.get(
+        Uri.parse('http://192.168.0.103:3000/api/items/allitems'),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        final List<dynamic> orderData = json.decode(response.body);
+        print('Order Data: $orderData'); // Add this line to print order data
+        setState(() {
+          _task = orderData.map((data) => Task.fromJson(data)).toList();
+        });
+      } else {
+        print('Failed to load orders. Status code: ${response.statusCode}');
+        print('Response body: ${response.body}');
+      }
+    } catch (error) {
+      print('Error fetching orders: $error');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Outdoor Poster'),
-        backgroundColor: Color(0xFF880A35),
+        title: Text('Designer Screen'),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                'Size',
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Tasks',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
               ),
-              SizedBox(height: 16.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  PosterButton(
-                    image: 'assets/images/img1.png',
-                    text: 'A4',
-                    onTap: () {
-                      setState(() {
-                        selectedSize = 'A4';
-                      });
-                    },
-                  ),
-                  PosterButton(
-                    image: 'assets/images/img1.png',
-                    text: 'A3',
-                    onTap: () {
-                      setState(() {
-                        selectedSize = 'A3';
-                      });
-                    },
-                  ),
-                  PosterButton(
-                    image: 'assets/images/img1.png',
-                    text: 'A2',
-                    onTap: () {
-                      setState(() {
-                        selectedSize = 'A2';
-                      });
-                    },
-                  ),
-                  PosterButton(
-                    image: 'assets/images/img1.png',
-                    text: 'B1',
-                    onTap: () {
-                      setState(() {
-                        selectedSize = 'B1';
-                      });
-                    },
-                  ),
-                ],
-              ),
-              Text(
-                'Paper Orientation',
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 16.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  PosterButton(
-                    image: 'assets/images/img1.png',
-                    text: 'Portrait',
-                    onTap: () {
-                      setState(() {
-                        selectedOrientation = 'Portrait';
-                      });
-                    },
-                  ),
-                  PosterButton(
-                    image: 'assets/images/img1.png',
-                    text: 'Landscape',
-                    onTap: () {
-                      setState(() {
-                        selectedOrientation = 'Landscape';
-                      });
-                    },
-                  ),
-                ],
-              ),
-              Text(
-                'Paper',
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 16.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  PosterButton(
-                    image: 'assets/images/img1.png',
-                    text: 'Magistra Deluxe Blueback',
-                    onTap: () {
-                      setState(() {
-                        selectedPaper = 'Magistra Deluxe Blueback';
-                      });
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(height: 16.0),
-              Text(
-                'Design Description',
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 16.0),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Enter design description...',
-                  border: OutlineInputBorder(),
-                ),
-                maxLines: null, // Allows multiline input
-                onChanged: (value) {
-                  setState(() {
-                    designDescription = value;
-                  });
-                },
-              ),
-              SizedBox(height: 16.0),
-              Text(
-                'Installation',
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 16.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Radio(
-                    value: 'Yes',
-                    groupValue: installationOption,
-                    onChanged: (value) {
-                      setState(() {
-                        installationOption = value as String;
-                      });
-                    },
-                  ),
-                  Text('Yes'),
-                  Radio(
-                    value: 'No',
-                    groupValue: installationOption,
-                    onChanged: (value) {
-                      setState(() {
-                        installationOption = value as String;
-                      });
-                    },
-                  ),
-                  Text('No'),
-                ],
-              ),
-              SizedBox(height: 16.0),
-              Text(
-                'Quantity',
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 16.0),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Enter quantity...',
-                  border: OutlineInputBorder(),
-                ),
-                keyboardType: TextInputType.number,
-                onChanged: (value) {
-                  setState(() {
-                    quantity = int.tryParse(value) ?? 0;
-                    price = quantity * 300;
-                  });
-                },
-              ),
-              SizedBox(height: 16.0),
-              Text(
-                'Price: \$${price.toString()}',
-                style: TextStyle(fontSize: 18.0),
-              ),
-              SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: () async {
-                  UserInfo userInfo = await Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => UserInfoInputScreen()),
-                  );
-
-                  if (userInfo != null) {
-                    // User has provided information, navigate to CartScreen
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CartScreen(
-                          selectedSize: selectedSize,
-                          selectedOrientation: selectedOrientation,
-                          selectedPaper: selectedPaper,
-                          quantity: quantity,
-                          price: price,
-                          installationOption: installationOption,
-                          designDescription: designDescription,
-                          type: type,
-                          email: userInfo.email,
-                          name: userInfo.name,
-                          contact: userInfo.contact,
-                          address: userInfo.address,
-                          carddetails: userInfo.cardDetails,
-                        ),
-                      ),
-                    );
-                  }
-                },
-                child: Text('Add to Cart'),
-              ),
-
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class PosterButton extends StatelessWidget {
-  final String image;
-  final String text;
-  final VoidCallback? onTap;
-
-  PosterButton({required this.image, required this.text, this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: onTap,
-          child: Card(
-            color: Colors.white,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  image,
-                  width: 82.0,
-                  height: 89.0,
-                ),
-                SizedBox(height: 10.0),
-                Text(
-                  text,
-                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-                ),
-              ],
             ),
           ),
-        ),
-      ],
+          Expanded(
+            child: ListView.builder(
+              itemCount: _task.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  child: ListTile(
+                    title: Text('Type: ${_task[index].type}'),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Size: ${_task[index].size}'),
+                        Text('Paper Orientation: ${_task[index].paperorient}'),
+                        // Text('Paper: ${_task[index].paper}'),
+                        Text('Description: ${_task[index].des}'),
+                        Text('Email: ${_task[index].email}'),
+                        Text('Name: ${_task[index].name}'),
+                        Text('Contact: ${_task[index].contact}'),
+                      ],
+                    ),
+                    trailing: ElevatedButton(
+                      onPressed: () {
+                        // Add your button functionality here
+                        // For example, navigate to a detailed view of the order
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => OrderDetailScreen(task: _task[index]),
+                        //   ),
+                        // );
+                      },
+                      child: Text('View Order'),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
-
