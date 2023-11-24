@@ -2,16 +2,21 @@
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:project/DesignerStatus.dart';
 import 'dart:convert';
 import 'task.dart';
 
 class DesignerScreen extends StatefulWidget {
+  final String userEmail;
+  final String userPassword;
+
+  DesignerScreen({required this.userEmail, required this.userPassword});
+
   @override
   _DesignerScreenState createState() => _DesignerScreenState();
 }
 
 class _DesignerScreenState extends State<DesignerScreen> {
-  Task? _tasks;
   List<Task> _task = [];
 
   @override
@@ -31,6 +36,7 @@ class _DesignerScreenState extends State<DesignerScreen> {
         final List<dynamic> orderData = json.decode(response.body);
         print('Order Data: $orderData'); // Add this line to print order data
         setState(() {
+          _task.clear();
           _task = orderData.map((data) => Task.fromJson(data)).toList();
         });
       } else {
@@ -41,6 +47,7 @@ class _DesignerScreenState extends State<DesignerScreen> {
       print('Error fetching orders: $error');
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -74,8 +81,9 @@ class _DesignerScreenState extends State<DesignerScreen> {
                       children: [
                         Text('Size: ${_task[index].size}'),
                         Text('Paper Orientation: ${_task[index].paperorient}'),
-                        // Text('Paper: ${_task[index].paper}'),
+                        Text('Paper: ${_task[index].paper}'),
                         Text('Description: ${_task[index].des}'),
+                        Text('Quantity: ${_task[index].quantity}'),
                         Text('Email: ${_task[index].email}'),
                         Text('Name: ${_task[index].name}'),
                         Text('Contact: ${_task[index].contact}'),
@@ -83,14 +91,16 @@ class _DesignerScreenState extends State<DesignerScreen> {
                     ),
                     trailing: ElevatedButton(
                       onPressed: () {
-                        // Add your button functionality here
-                        // For example, navigate to a detailed view of the order
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => OrderDetailScreen(task: _task[index]),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DesignerStatus(
+                              task: _task[index],
+                              userEmail: widget.userEmail,
+                              userPassword: widget.userPassword,
+                            ),
+                          ),
+                        );
                       },
                       child: Text('View Order'),
                     ),

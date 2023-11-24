@@ -71,7 +71,8 @@ class _LoginPageState extends State<LoginPage> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DesignerScreen(),
+                      builder: (context) => DesignerScreen(userEmail: _emailController.text,
+                        userPassword: _passwordController.text),
                     ),
                   );
                   break;
@@ -79,7 +80,8 @@ class _LoginPageState extends State<LoginPage> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => PrinterScreen(),
+                      builder: (context) => PrinterScreen(userEmail: _emailController.text,
+                          userPassword: _passwordController.text),
                     ),
                   );
                   break;
