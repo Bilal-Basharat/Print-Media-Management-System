@@ -54,6 +54,7 @@ class _PrinterScreenState extends State<PrinterScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Printer Screen'),
+        backgroundColor: Color(0xFF880A35),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,6 +105,15 @@ class _PrinterScreenState extends State<PrinterScreen> {
                           ),
                         );
                       },
+                      style: ElevatedButton.styleFrom(
+
+                        // Adjust the width
+                        primary: Color(0xFF880A35),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              20.0), // Adjust the radius
+                        ),
+                      ),
                       child: Text('View Order'),
                     ),
                   ),

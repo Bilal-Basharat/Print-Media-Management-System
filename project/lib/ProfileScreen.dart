@@ -112,6 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
+        backgroundColor: Color(0xFF880A35),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

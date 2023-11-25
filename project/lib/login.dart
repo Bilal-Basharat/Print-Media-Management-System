@@ -8,6 +8,8 @@ import 'package:project/AdminScreen.dart';
 import 'package:project/main.dart';
 import 'package:http/http.dart' as http;
 import 'package:project/JobsScreen.dart';
+import 'package:project/AdminScreen.dart';
+import 'package:project/ApplyJob.dart';
 import 'user_model.dart';
 import 'dart:convert';
 import 'main.dart'; // Create a home page file as well
@@ -49,6 +51,17 @@ class _LoginPageState extends State<LoginPage> {
             headers: {"Content-Type": "application/json"},
             body: jsonEncode(regBody),
           );
+          if(_emailController.text=='admin' && _passwordController.text=='admin')
+            {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                  builder: (context) =>
+                  AdminPage()
+                  ),
+
+              );
+            }
 
           if (response.statusCode == 200) {
             var userData = json.decode(response.body);
@@ -118,14 +131,31 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF880A35),
         automaticallyImplyLeading: false,
-        title: Text('Login Page'),
+        title: Text('Print Express'),
       ),
       body: Padding(
+
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset(
+              'assets/images/icon.png', // Replace with your image path
+              height: 100.0, // Adjust the height as needed
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                'Sign In',
+                style: TextStyle(
+
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
@@ -149,6 +179,13 @@ class _LoginPageState extends State<LoginPage> {
                 String password = _passwordController.text.trim();
 
               },
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 100.0), // Adjust the width
+                  primary: Color(0xFF880A35),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0), // Adjust the radius
+                  ),// Set the background color
+                ),
               child: Text('Login'),
             ),
             SizedBox(height: 16.0),
@@ -179,7 +216,7 @@ class _LoginPageState extends State<LoginPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => JobScreen(),
+                    builder: (context) => ApplyScreen(),
                   ),
                 );
               },

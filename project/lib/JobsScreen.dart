@@ -50,8 +50,15 @@ class _JobScreenState extends State<JobScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false, // Disable the default back button
         title: Text('Careers'),
+        backgroundColor: Color(0xFF880A35),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -101,7 +108,7 @@ class _JobScreenState extends State<JobScreen> {
                     _selectedRole = newValue!;
                   });
                 },
-                items: <String>['printer', 'designer','user'] // Add 'user' or remove it if not needed
+                items: <String>['printer', 'designer','user',''] // Add 'user' or remove it if not needed
                     .map<DropdownMenuItem<String>>(
                       (String value) => DropdownMenuItem<String>(
                     value: value,
@@ -122,49 +129,17 @@ class _JobScreenState extends State<JobScreen> {
                       builder: (context) => LoginPage(),
                     ),
                   );
-                  // String email = _emailController.text;
-                  // String password = _passwordController.text;
-                  // String firstname = _firstNameController.text;
-                  // String lastname = _lastNameController.text;
-                  // String address = _addressController.text;
-                  // String contact = _contactController.text;
-
-
-                  // Perform sign-up actions (e.g., API call, authentication)
-                  // Add your implementation here
-
-                  // For demonstration purposes, print the input values
-
-                  // print('Email: $email');
-                  // print('Password: $password');
-                  // print('First Name: $firstName');
-                  // print('Last Name: $lastName');
-                  // print('Address: $address');
-                  // print('Contact: $contact');
                 },
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 100.0), // Adjust the width
+                  primary: Color(0xFF880A35),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0), // Adjust the radius
+                  ),// Set the background color
+                ),
                 child: Text('Apply'),
               ),
 
-              SizedBox(height: 16.0),
-              GestureDetector(
-                onTap: () {
-
-                  // Navigate to the login screen
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LoginPage(),
-                    ),
-                  );
-                },
-                child: Text(
-                  'Already have an account? Sign In',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ),
             ],
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:project/Outdoorposter.dart';
 import 'package:project/Banner.dart';
 import 'package:project/login.dart';
 import 'package:project/ProfileScreen.dart';
+import 'package:project/Review.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -69,6 +70,21 @@ class _MainmenuActivityState extends State<MainmenuActivity> {
               leading: Icon(Icons.contact_phone),
               title: Text('Contact'),
               onTap: () {
+
+                // Handle the "Contact" button press
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.star),
+              title: Text('Review'),
+
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => WriteReviewScreen(userEmail: widget.userEmail),
+                  ),
+                );
                 // Handle the "Contact" button press
               },
             ),

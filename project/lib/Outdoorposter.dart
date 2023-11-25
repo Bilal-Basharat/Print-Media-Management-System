@@ -53,7 +53,7 @@ class _OutdoorPosterPageState extends State<OutdoorPosterPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   PosterButton(
-                    image: 'assets/images/img1.png',
+                    image: 'assets/images/size.png',
                     text: 'A4',
                     onTap: () {
                       setState(() {
@@ -62,7 +62,7 @@ class _OutdoorPosterPageState extends State<OutdoorPosterPage> {
                     },
                   ),
                   PosterButton(
-                    image: 'assets/images/img1.png',
+                    image: 'assets/images/size.png',
                     text: 'A3',
                     onTap: () {
                       setState(() {
@@ -71,7 +71,7 @@ class _OutdoorPosterPageState extends State<OutdoorPosterPage> {
                     },
                   ),
                   PosterButton(
-                    image: 'assets/images/img1.png',
+                    image: 'assets/images/size.png',
                     text: 'A2',
                     onTap: () {
                       setState(() {
@@ -80,7 +80,7 @@ class _OutdoorPosterPageState extends State<OutdoorPosterPage> {
                     },
                   ),
                   PosterButton(
-                    image: 'assets/images/img1.png',
+                    image: 'assets/images/size.png',
                     text: 'B1',
                     onTap: () {
                       setState(() {
@@ -99,7 +99,7 @@ class _OutdoorPosterPageState extends State<OutdoorPosterPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   PosterButton(
-                    image: 'assets/images/img1.png',
+                    image: 'assets/images/port.png',
                     text: 'Portrait',
                     onTap: () {
                       setState(() {
@@ -108,7 +108,7 @@ class _OutdoorPosterPageState extends State<OutdoorPosterPage> {
                     },
                   ),
                   PosterButton(
-                    image: 'assets/images/img1.png',
+                    image: 'assets/images/land.png',
                     text: 'Landscape',
                     onTap: () {
                       setState(() {
@@ -127,7 +127,7 @@ class _OutdoorPosterPageState extends State<OutdoorPosterPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   PosterButton(
-                    image: 'assets/images/img1.png',
+                    image: 'assets/images/page.png',
                     text: 'Magistra Deluxe Blueback',
                     onTap: () {
                       setState(() {
@@ -207,7 +207,7 @@ class _OutdoorPosterPageState extends State<OutdoorPosterPage> {
               ),
               SizedBox(height: 16.0),
               Text(
-                'Price: \$${price.toString()}',
+                'Price: ${price.toString()}',
                 style: TextStyle(fontSize: 18.0),
               ),
               SizedBox(height: 16.0),

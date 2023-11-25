@@ -212,6 +212,7 @@ class _PrinterStatusState extends State<PrinterStatus> {
     fetchUserData();
   }
 
+
   Future<void> updatePrinterStatus() async {
     try {
       final response = await http.put(
@@ -234,6 +235,7 @@ class _PrinterStatusState extends State<PrinterStatus> {
       print('Error updating printer status: $error');
     }
   }
+
 
   Future<void> fetchUserData() async {
     try {
@@ -258,12 +260,35 @@ class _PrinterStatusState extends State<PrinterStatus> {
       print('Error fetching user data: $error');
     }
   }
+  void Send_mail() {
+    var
+    Service_id = 'service_fpdbuyt',
+        Template_id = 'template_ll7mt6h',
+        User_id = 's8BPFicQhyWq8BeHp';
+    var s = http.post(Uri.parse('https://api.emailjs.com/api/v1.0/email/send'),
+        headers: {
+          'origin': 'http:localhost',
+          'Content-Type': 'application/json'
+        },
+        body: jsonEncode({
+          'service_id': Service_id,
+          'user_id': User_id,
+          'template_id': Template_id,
+          'template_params': {
+            'name': widget.task.name,
+            'message': _selectedStatus,
+            'sender': widget.task.email
+          }
+        })
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Designer Status'),
+        backgroundColor: Color(0xFF880A35),
+        title: Text('Printing Status'),
       ),
       body: Center(
         child: Column(
@@ -275,7 +300,7 @@ class _PrinterStatusState extends State<PrinterStatus> {
             Text('Paper Orientation: ${widget.task.paperorient}'),
             Text('Paper: ${widget.task.paper}'),
             Text('Description: ${widget.task.des}'),
-            Text('Quantity: ${widget.task.quantity}'),
+            // Text('Quantity: ${widget.task.quantity}'),
             Text('Email: ${widget.task.email}'),
             Text('Name: ${widget.task.name}'),
             Text('Contact: ${widget.task.contact}'),
@@ -305,8 +330,19 @@ class _PrinterStatusState extends State<PrinterStatus> {
             ElevatedButton(
               onPressed: () async {
                 await updatePrinterStatus();
+                Send_mail();
                 Navigator.pop(context, _selectedStatus);
               },
+              style: ElevatedButton.styleFrom(
+
+                padding: EdgeInsets.symmetric(horizontal: 100.0),
+                // Adjust the width
+                primary: Color(0xFF880A35),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                      20.0), // Adjust the radius
+                ),
+              ),
               child: Text('Save Status'),
             ),
           ],

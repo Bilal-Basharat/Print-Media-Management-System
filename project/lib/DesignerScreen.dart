@@ -28,7 +28,7 @@ class _DesignerScreenState extends State<DesignerScreen> {
   Future<void> fetchTasks() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.0.103:3000/api/items/allitems'),
+        Uri.parse('http://192.168.0.103:3000/api/items/unassigned'),
         headers: {'Content-Type': 'application/json'},
       );
 
@@ -53,6 +53,7 @@ class _DesignerScreenState extends State<DesignerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF880A35),
         title: Text('Designer Screen'),
       ),
       body: Column(
@@ -102,6 +103,15 @@ class _DesignerScreenState extends State<DesignerScreen> {
                           ),
                         );
                       },
+                      style: ElevatedButton.styleFrom(
+
+                        // Adjust the width
+                        primary: Color(0xFF880A35),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              20.0), // Adjust the radius
+                        ),
+                      ),
                       child: Text('View Order'),
                     ),
                   ),

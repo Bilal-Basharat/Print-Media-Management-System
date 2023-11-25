@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
 }
 
 class SignUpScreen extends StatefulWidget {
+
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
@@ -63,16 +64,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('Sign Up'),
+
+        title: Text('Print Express'),
+          backgroundColor: Color(0xFF880A35)
       ),
       body: SingleChildScrollView(
-        child: Padding(
+        child:
+        Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset(
+                'assets/images/icon.png', // Replace with your image path
+                height: 100.0, // Adjust the height as needed
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  'Sign Up',
+                  style: TextStyle(
+
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
 
               SizedBox(height: 16.0),
+
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(labelText: 'Email'),
@@ -108,6 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(height: 32.0),
               ElevatedButton(
 
+
                 onPressed: () {
                   registerUser();
                   // Handle sign-up logic here
@@ -117,26 +138,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       builder: (context) => LoginPage(),
                     ),
                   );
-                  // String email = _emailController.text;
-                  // String password = _passwordController.text;
-                  // String firstname = _firstNameController.text;
-                  // String lastname = _lastNameController.text;
-                  // String address = _addressController.text;
-                  // String contact = _contactController.text;
-
-
-                  // Perform sign-up actions (e.g., API call, authentication)
-                  // Add your implementation here
-
-                  // For demonstration purposes, print the input values
-
-                  // print('Email: $email');
-                  // print('Password: $password');
-                  // print('First Name: $firstName');
-                  // print('Last Name: $lastName');
-                  // print('Address: $address');
-                  // print('Contact: $contact');
                 },
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 100.0), // Adjust the width
+                  primary: Color(0xFF880A35),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0), // Adjust the radius
+                  ),// Set the background color
+                ),
                 child: Text('Sign Up'),
               ),
               SizedBox(height: 16.0),
