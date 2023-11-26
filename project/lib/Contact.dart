@@ -2,35 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class ApplyScreen extends StatefulWidget {
+class ContactScreen extends StatefulWidget {
   @override
-  _ApplyScreenState createState() => _ApplyScreenState();
+  _ContactScreenState createState() => _ContactScreenState();
 }
 
-class _ApplyScreenState extends State<ApplyScreen> {
+class _ContactScreenState extends State<ContactScreen> {
+  // Controller for the text field
   TextEditingController _reviewController = TextEditingController();
 
-  // Function to send an email using EmailJS API
-  void sendMail() {
-    var serviceId = 'service_fpdbuyt';
-    var templateId = 'template_ll7mt6h';
-    var userId = 's8BPFicQhyWq8BeHp';
+  // Function to send an email using the EmailJS service
+  void Send_mail() {
+    var Service_id = 'service_fpdbuyt';
+    var Template_id = 'template_ll7mt6h';
+    var User_id = 's8BPFicQhyWq8BeHp';
 
-    http.post(
+    // HTTP POST request to EmailJS API
+    var s = http.post(
       Uri.parse('https://api.emailjs.com/api/v1.0/email/send'),
       headers: {
         'origin': 'http:localhost',
         'Content-Type': 'application/json',
       },
       body: jsonEncode({
-        'service_id': serviceId,
-        'user_id': userId,
-        'template_id': templateId,
+        'service_id': Service_id,
+        'user_id': User_id,
+        'template_id': Template_id,
         'template_params': {
           'name': 'admin',
           'message': _reviewController.text,
           'sender': 'emahnoor@yahoo.com',
-        },
+        }
       }),
     );
   }
@@ -39,7 +41,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Apply for job'),
+        title: Text('Contact Admin'),
         backgroundColor: Color(0xFF880A35),
       ),
       body: Padding(
@@ -48,33 +50,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Send in a proper format',
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-            ),
-            // Additional details for job application
-            Text(
-              'first name:',
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              'last name:',
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              'email:',
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              'contact:',
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              'address:',
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              'role you are applying for:',
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+              'Enter any queries or cancellation request',
             ),
             SizedBox(height: 20),
             Text(
@@ -86,16 +62,16 @@ class _ApplyScreenState extends State<ApplyScreen> {
               controller: _reviewController,
               maxLines: 5,
               decoration: InputDecoration(
-                hintText: 'give info here...',
+                hintText: 'Enter your message here...',
                 border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 20),
-            // Submit button
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  sendMail();
+                  // Call the function to send an email
+                  Send_mail();
                 },
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 100.0),

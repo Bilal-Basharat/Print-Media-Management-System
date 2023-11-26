@@ -1,12 +1,10 @@
-// designer_screen.dart
+// performance.dart
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:project/DesignerStatus.dart';
 import 'dart:convert';
 import 'task.dart';
-
-// Import necessary packages and files
 
 class Performance extends StatefulWidget {
   @override
@@ -61,9 +59,9 @@ class _PerformanceState extends State<Performance> {
 
         return taskType.contains(searchText) ||
             taskdname.contains(searchText) ||
-            taskdstatus.contains(searchText)||
+            taskdstatus.contains(searchText) ||
             taskpname.contains(searchText) ||
-            taskpstatus.contains(searchText) ;
+            taskpstatus.contains(searchText);
       }).toList();
     });
   }
@@ -105,14 +103,13 @@ class _PerformanceState extends State<Performance> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Name: ${_filteredTasks[index].name}'),
-                        Text(
-                            'email: ${_filteredTasks[index].email}'),
-                        Text('designer email: ${_filteredTasks[index].designeremail}'),
-                        Text('designer name: ${_filteredTasks[index].designerName}'),
-                        Text('designing status: ${_filteredTasks[index].designerStatus}'),
-                        Text('printer email: ${_filteredTasks[index].printeremail}'),
-                        Text('designer name: ${_filteredTasks[index].printerName}'),
-                        Text('printing status: ${_filteredTasks[index].printStatus}'),
+                        Text('Email: ${_filteredTasks[index].email}'),
+                        Text('Designer Email: ${_filteredTasks[index].designeremail}'),
+                        Text('Designer Name: ${_filteredTasks[index].designerName}'),
+                        Text('Designing Status: ${_filteredTasks[index].designerStatus}'),
+                        Text('Printer Email: ${_filteredTasks[index].printeremail}'),
+                        Text('Printer Name: ${_filteredTasks[index].printerName}'),
+                        Text('Printing Status: ${_filteredTasks[index].printStatus}'),
                       ],
                     ),
                   ),

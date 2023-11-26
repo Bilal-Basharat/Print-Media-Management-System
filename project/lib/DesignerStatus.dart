@@ -11,12 +11,10 @@ class DesignerStatus extends StatefulWidget {
   final String userEmail;
   final String userPassword;
 
-
   DesignerStatus({
     required this.task,
     required this.userEmail,
     required this.userPassword,
-
   });
 
   @override
@@ -36,38 +34,38 @@ class _DesignerStatusState extends State<DesignerStatus> {
     // Initialize the dropdown with the initial status
     _selectedStatus = widget.task.designerStatus;
     fetchUserData();
-
   }
-  void Send_mail(){
-    var
-    Service_id='service_fpdbuyt',
-        Template_id='template_m937utx',
-        User_id='s8BPFicQhyWq8BeHp';
-    var s=http.post(Uri.parse('https://api.emailjs.com/api/v1.0/email/send'),
+
+  // Function to send an email notification
+  void Send_mail() {
+    var Service_id = 'service_fpdbuyt';
+    var Template_id = 'template_m937utx';
+    var User_id = 's8BPFicQhyWq8BeHp';
+    var s = http.post(Uri.parse('https://api.emailjs.com/api/v1.0/email/send'),
         headers: {
-          'origin':'http:localhost',
-          'Content-Type':'application/json'
+          'origin': 'http:localhost',
+          'Content-Type': 'application/json'
         },
         body: jsonEncode({
-          'service_id':Service_id,
-          'user_id':User_id,
-          'template_id':Template_id,
-          'template_params':{
-            'name':widget.task.name,
-            'message':_selectedStatus,
-            'sender':widget.task.email
-
+          'service_id': Service_id,
+          'user_id': User_id,
+          'template_id': Template_id,
+          'template_params': {
+            'name': widget.task.name,
+            'message': _selectedStatus,
+            'sender': widget.task.email
           }
-        })
-    );
-
+        }));
   }
+
+  // Function to fetch user data from the server
   Future<void> fetchUserData() async {
     try {
       final response = await http.post(
         Uri.parse('http://192.168.0.103:3000/api/users/login'),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'email': widget.userEmail, 'password': widget.userPassword}),
+        body: jsonEncode(
+            {'email': widget.userEmail, 'password': widget.userPassword}),
       );
 
       if (response.statusCode == 200) {
@@ -85,6 +83,8 @@ class _DesignerStatusState extends State<DesignerStatus> {
       print('Error fetching user data: $error');
     }
   }
+
+  // Function to save the status of the task
   Future<void> saveStatus() async {
     try {
       final response = await http.post(
@@ -99,7 +99,7 @@ class _DesignerStatusState extends State<DesignerStatus> {
           'name': widget.task.name,
           'contact': widget.task.contact,
           'designeremail': widget.userEmail,
-          'designerName':_user?.firstname ?? 'N/A',
+          'designerName': _user?.firstname ?? 'N/A',
           'designercontact': _user?.contact ?? 'N/A',
           'designerStatus': _selectedStatus,
         }),
@@ -118,7 +118,6 @@ class _DesignerStatusState extends State<DesignerStatus> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,6 +129,7 @@ class _DesignerStatusState extends State<DesignerStatus> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Display task details
             Text('Type: ${widget.task.type}'),
             Text('Size: ${widget.task.size}'),
             Text('Paper Orientation: ${widget.task.paperorient}'),
@@ -141,10 +141,7 @@ class _DesignerStatusState extends State<DesignerStatus> {
             Text('Contact: ${widget.task.contact}'),
             Text('Designer email: ${_user?.email ?? 'N/A'}'),
             Text('Designer Name: ${_user?.firstname ?? 'N/A'}'),
-
-
             Text('Designer Contact: ${_user?.contact ?? 'N/A'}'),
-
             SizedBox(height: 20),
 
             // Dropdown button for status
@@ -166,14 +163,14 @@ class _DesignerStatusState extends State<DesignerStatus> {
               }).toList(),
             ),
 
+            // Button to save the status
             ElevatedButton(
               onPressed: () async {
                 await saveStatus();
-                Send_mail();// Wait for saveStatus to complete
+                Send_mail(); // Wait for saveStatus to complete
                 Navigator.pop(context, _selectedStatus); // Return the selectedStatus to DesignerScreen
               },
               style: ElevatedButton.styleFrom(
-
                 padding: EdgeInsets.symmetric(horizontal: 100.0),
                 // Adjust the width
                 primary: Color(0xFF880A35),

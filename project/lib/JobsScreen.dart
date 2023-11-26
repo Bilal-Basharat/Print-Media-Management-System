@@ -1,9 +1,10 @@
+// job_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:project/login.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'config.dart';
-
 
 class JobScreen extends StatefulWidget {
   @override
@@ -11,41 +12,49 @@ class JobScreen extends StatefulWidget {
 }
 
 class _JobScreenState extends State<JobScreen> {
-
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _contactController = TextEditingController();
-  String _selectedRole='';
-  // bool isnotvalid = false;
-  void registerUser() async
-  {
-    if( !_emailController.text.isEmpty || !_passwordController.text.isEmpty ||
-        !_firstNameController.text.isEmpty || !_lastNameController.text.isEmpty || !_addressController.text.isEmpty || !_contactController.text.isEmpty || !_selectedRole.isEmpty)
-    {
+  String _selectedRole = '';
+
+  // Function to register user
+  void registerUser() async {
+    // Check if the required fields are not empty
+    if (!_emailController.text.isEmpty ||
+        !_passwordController.text.isEmpty ||
+        !_firstNameController.text.isEmpty ||
+        !_lastNameController.text.isEmpty ||
+        !_addressController.text.isEmpty ||
+        !_contactController.text.isEmpty ||
+        !_selectedRole.isEmpty) {
+      // Prepare the request body
       var regBody = {
-
-        "email":_emailController.text,
-        "password":_passwordController.text,
-        "firstname":_firstNameController.text,
-        "lastname":_lastNameController.text,
-        "address":_addressController.text,
-        "contact":_contactController.text,
-        "role":_selectedRole
+        "email": _emailController.text,
+        "password": _passwordController.text,
+        "firstname": _firstNameController.text,
+        "lastname": _lastNameController.text,
+        "address": _addressController.text,
+        "contact": _contactController.text,
+        "role": _selectedRole,
       };
-      var response = await http.post(Uri.parse('http://192.168.0.103:3000/api/users/register'),
-          headers: {"Content-Type":"application/json"},
-          body: jsonEncode(regBody)
 
+      // Send the registration request
+      var response = await http.post(
+        Uri.parse('http://192.168.0.103:3000/api/users/register'),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode(regBody),
       );
+
       print(response);
-    }else{
-
-
+    } else {
+      // Handle the case when required fields are empty
+      // You may want to show an error message to the user
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +75,7 @@ class _JobScreenState extends State<JobScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
+              // TextFields for user input
               SizedBox(height: 16.0),
               TextField(
                 controller: _emailController,
@@ -101,6 +110,8 @@ class _JobScreenState extends State<JobScreen> {
                 keyboardType: TextInputType.phone,
               ),
               SizedBox(height: 32.0),
+
+              // Dropdown for selecting user role
               DropdownButton<String>(
                 value: _selectedRole,
                 onChanged: (String? newValue) {
@@ -108,7 +119,7 @@ class _JobScreenState extends State<JobScreen> {
                     _selectedRole = newValue!;
                   });
                 },
-                items: <String>['printer', 'designer','user',''] // Add 'user' or remove it if not needed
+                items: <String>['printer', 'designer', 'user', '']
                     .map<DropdownMenuItem<String>>(
                       (String value) => DropdownMenuItem<String>(
                     value: value,
@@ -118,8 +129,9 @@ class _JobScreenState extends State<JobScreen> {
                     .toList(),
               ),
               SizedBox(height: 32.0),
-              ElevatedButton(
 
+              // Button to apply for the job
+              ElevatedButton(
                 onPressed: () {
                   registerUser();
                   // Handle sign-up logic here
@@ -131,15 +143,14 @@ class _JobScreenState extends State<JobScreen> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 100.0), // Adjust the width
+                  padding: EdgeInsets.symmetric(horizontal: 100.0),
                   primary: Color(0xFF880A35),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0), // Adjust the radius
-                  ),// Set the background color
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
                 ),
                 child: Text('Apply'),
               ),
-
             ],
           ),
         ),

@@ -12,7 +12,14 @@ class _UserInfoInputScreenState extends State<UserInfoInputScreen> {
   TextEditingController contactController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController cardDetailsController = TextEditingController();
-
+  void displaySnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,16 +55,27 @@ class _UserInfoInputScreenState extends State<UserInfoInputScreen> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(
-                  context,
-                  UserInfo(
-                    email: emailController.text,
-                    name: nameController.text,
-                    contact: contactController.text,
-                    address: addressController.text,
-                    cardDetails: cardDetailsController.text,
-                  ),
-                );
+                if (emailController.text.isEmpty ||
+                    nameController.text.isEmpty ||
+                    contactController.text.isEmpty ||
+                    addressController.text.isEmpty ||
+                    cardDetailsController.text.isEmpty) {
+                  displaySnackBar('Please fill in all fields.');
+                } else if (cardDetailsController.text.length != 13) {
+                  displaySnackBar('Card details must be exactly 13 digits.');
+                } else {
+                  Navigator.pop(
+                    context,
+                    UserInfo(
+                      email: emailController.text,
+                      name: nameController.text,
+                      contact: contactController.text,
+                      address: addressController.text,
+                      cardDetails: cardDetailsController.text,
+                    ),
+                  );
+                }
+
               },
               child: Text('Submit'),
             ),

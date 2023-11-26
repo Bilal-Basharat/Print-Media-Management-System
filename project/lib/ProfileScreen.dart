@@ -1,33 +1,3 @@
-// import 'package:flutter/material.dart';
-//
-// class ProfileScreen extends StatelessWidget {
-//   final Map<String, dynamic>? userData;
-//
-//   ProfileScreen({required this.userData});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Profile'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Text('Email: ${userData["email"]}'),
-//             Text('First Name: ${userData["firstname"]}'),
-//             Text('Last Name: ${userData["lastname"]}'),
-//             Text('Address: ${userData["address"]}'),
-//             Text('Contact: ${userData["contact"]}'),
-//             // Add more fields as needed
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
 // profile_screen.dart
 
 import 'package:flutter/material.dart';
@@ -137,7 +107,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
                         Text('Size: ${_orders[index].size}'),
                         Text('Paper Orientation: ${_orders[index].paperorient}'),
                         Text('Paper: ${_orders[index].paper}'),

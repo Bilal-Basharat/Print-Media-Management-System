@@ -4,29 +4,13 @@ import 'package:project/Banner.dart';
 import 'package:project/login.dart';
 import 'package:project/ProfileScreen.dart';
 import 'package:project/Review.dart';
-
-// void main() {
-//   runApp(MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: MainmenuActivity(),
-//     );
-//   }
-// }
+import 'package:project/Contact.dart';
 
 class MainmenuActivity extends StatefulWidget {
-  // const MainmenuActivity({Key? key}) : super(key: key);
   final String userEmail;
   final String userPassword;
 
-
-
   MainmenuActivity({required this.userEmail, required this.userPassword});
-
 
   @override
   _MainmenuActivityState createState() => _MainmenuActivityState();
@@ -46,8 +30,10 @@ class _MainmenuActivityState extends State<MainmenuActivity> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ProfileScreen(userEmail: widget.userEmail,
-                    userPassword: widget.userPassword,),
+                  builder: (context) => ProfileScreen(
+                    userEmail: widget.userEmail,
+                    userPassword: widget.userPassword,
+                  ),
                 ),
               );
               // Handle the profile button press
@@ -58,7 +44,6 @@ class _MainmenuActivityState extends State<MainmenuActivity> {
       drawer: Drawer(
         child: ListView(
           children: [
-
             ListTile(
               leading: Icon(Icons.info),
               title: Text('About Us'),
@@ -70,14 +55,18 @@ class _MainmenuActivityState extends State<MainmenuActivity> {
               leading: Icon(Icons.contact_phone),
               title: Text('Contact'),
               onTap: () {
-
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ContactScreen(),
+                  ),
+                );
                 // Handle the "Contact" button press
               },
             ),
             ListTile(
               leading: Icon(Icons.star),
               title: Text('Review'),
-
               onTap: () {
                 Navigator.push(
                   context,
@@ -85,7 +74,7 @@ class _MainmenuActivityState extends State<MainmenuActivity> {
                     builder: (context) => WriteReviewScreen(userEmail: widget.userEmail),
                   ),
                 );
-                // Handle the "Contact" button press
+                // Handle the "Review" button press
               },
             ),
             Divider(), // Add a divider
@@ -116,7 +105,7 @@ class _MainmenuActivityState extends State<MainmenuActivity> {
               margin: EdgeInsets.only(top: 20.0),
               child: GestureDetector(
                 onTap: () {
-                  // Navigate to the login screen
+                  // Navigate to the OutdoorPosterPage
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -149,7 +138,7 @@ class _MainmenuActivityState extends State<MainmenuActivity> {
               margin: EdgeInsets.only(top: 40.0),
               child: GestureDetector(
                 onTap: () {
-                  // Navigate to the login screen
+                  // Navigate to the BannerPosterPage
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -178,7 +167,6 @@ class _MainmenuActivityState extends State<MainmenuActivity> {
                 ),
               ),
             ),
-
             // ... Add similar code for other UI elements
           ],
         ),
@@ -186,4 +174,3 @@ class _MainmenuActivityState extends State<MainmenuActivity> {
     );
   }
 }
-

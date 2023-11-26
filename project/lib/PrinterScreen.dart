@@ -1,4 +1,4 @@
-// designer_screen.dart
+// printer_screen.dart
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -48,7 +48,6 @@ class _PrinterScreenState extends State<PrinterScreen> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,7 +79,6 @@ class _PrinterScreenState extends State<PrinterScreen> {
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
                         Text('Size: ${_task[index].size}'),
                         Text('Paper Orientation: ${_task[index].paperorient}'),
                         Text('Paper: ${_task[index].paper}'),
@@ -106,12 +104,12 @@ class _PrinterScreenState extends State<PrinterScreen> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-
                         // Adjust the width
                         primary: Color(0xFF880A35),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
-                              20.0), // Adjust the radius
+                            20.0, // Adjust the radius
+                          ),
                         ),
                       ),
                       child: Text('View Order'),

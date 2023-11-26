@@ -25,6 +25,7 @@ class _DesignerScreenState extends State<DesignerScreen> {
     fetchTasks();
   }
 
+  // Function to fetch tasks from the server
   Future<void> fetchTasks() async {
     try {
       final response = await http.get(
@@ -33,21 +34,24 @@ class _DesignerScreenState extends State<DesignerScreen> {
       );
 
       if (response.statusCode == 200) {
+        // Parse the response body to a list of dynamic data
         final List<dynamic> orderData = json.decode(response.body);
-        print('Order Data: $orderData'); // Add this line to print order data
+        print('Order Data: $orderData'); // Print order data to console
         setState(() {
           _task.clear();
+          // Convert dynamic data to a list of Task objects
           _task = orderData.map((data) => Task.fromJson(data)).toList();
         });
       } else {
+        // Handle error if the status code is not 200
         print('Failed to load orders. Status code: ${response.statusCode}');
         print('Response body: ${response.body}');
       }
     } catch (error) {
+      // Handle any exceptions that might occur during the fetch
       print('Error fetching orders: $error');
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +85,8 @@ class _DesignerScreenState extends State<DesignerScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Size: ${_task[index].size}'),
-                        Text('Paper Orientation: ${_task[index].paperorient}'),
+                        Text(
+                            'Paper Orientation: ${_task[index].paperorient}'),
                         Text('Paper: ${_task[index].paper}'),
                         Text('Description: ${_task[index].des}'),
                         Text('Quantity: ${_task[index].quantity}'),
@@ -92,6 +97,7 @@ class _DesignerScreenState extends State<DesignerScreen> {
                     ),
                     trailing: ElevatedButton(
                       onPressed: () {
+                        // Navigate to the DesignerStatus screen with relevant task details
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -104,7 +110,6 @@ class _DesignerScreenState extends State<DesignerScreen> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-
                         // Adjust the width
                         primary: Color(0xFF880A35),
                         shape: RoundedRectangleBorder(

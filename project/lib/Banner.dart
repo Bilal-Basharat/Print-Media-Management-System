@@ -21,6 +21,7 @@ class BannerPosterPage extends StatefulWidget {
 }
 
 class _BannerPosterPageState extends State<BannerPosterPage> {
+  // Variables to store user selections and details
   String selectedSize = '';
   String selectedOrientation = '';
   String selectedPaper = '';
@@ -28,7 +29,17 @@ class _BannerPosterPageState extends State<BannerPosterPage> {
   int price = 0;
   String installationOption = '';
   String designDescription = '';
-  String type='Banner';// Variable to store the design description
+  String type = 'Banner';
+
+  // Function to display a SnackBar with a given message
+  void displaySnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,39 +62,44 @@ class _BannerPosterPageState extends State<BannerPosterPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  // Buttons for selecting banner size
                   PosterButton(
-                    image: 'assets/images/img1.png',
+                    image: 'assets/images/size.png',
                     text: '380x280',
                     onTap: () {
                       setState(() {
                         selectedSize = '380 x 280 cm';
+                        displaySnackBar('selectedSize is: $selectedSize');
                       });
                     },
                   ),
                   PosterButton(
-                    image: 'assets/images/img1.png',
+                    image: 'assets/images/size.png',
                     text: '400x300',
                     onTap: () {
                       setState(() {
                         selectedSize = '400x300cm';
+                        displaySnackBar('selectedSize is: $selectedSize');
                       });
                     },
                   ),
                   PosterButton(
-                    image: 'assets/images/img1.png',
+                    image: 'assets/images/size.png',
                     text: '580x280',
                     onTap: () {
                       setState(() {
                         selectedSize = '580x280cm';
+                        displaySnackBar('selectedSize is: $selectedSize');
                       });
                     },
                   ),
                   PosterButton(
-                    image: 'assets/images/img1.png',
+                    image: 'assets/images/size.png',
                     text: '600x300',
                     onTap: () {
                       setState(() {
                         selectedSize = '600 x 300 cm';
+                        displaySnackBar('selectedSize is: $selectedSize');
                       });
                     },
                   ),
@@ -97,21 +113,26 @@ class _BannerPosterPageState extends State<BannerPosterPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  // Buttons for selecting paper orientation
                   PosterButton(
-                    image: 'assets/images/img1.png',
+                    image: 'assets/images/r.png',
                     text: '4 pieces',
                     onTap: () {
                       setState(() {
                         selectedOrientation = '4 pieces';
+                        displaySnackBar(
+                            'selected orientation is: $selectedOrientation');
                       });
                     },
                   ),
                   PosterButton(
-                    image: 'assets/images/img1.png',
+                    image: 'assets/images/c.png',
                     text: '8 pieces',
                     onTap: () {
                       setState(() {
                         selectedOrientation = '8 pieces';
+                        displaySnackBar(
+                            'selected orientation is: $selectedOrientation');
                       });
                     },
                   ),
@@ -125,12 +146,14 @@ class _BannerPosterPageState extends State<BannerPosterPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  // Button for selecting paper type
                   PosterButton(
-                    image: 'assets/images/img1.png',
+                    image: 'assets/images/page.png',
                     text: 'Magistra Deluxe Blueback',
                     onTap: () {
                       setState(() {
                         selectedPaper = 'Magistra Deluxe Blueback';
+                        displaySnackBar('selected paper is: $selectedPaper');
                       });
                     },
                   ),
@@ -143,6 +166,7 @@ class _BannerPosterPageState extends State<BannerPosterPage> {
               ),
               SizedBox(height: 16.0),
               TextField(
+                // Text field for entering design description
                 decoration: InputDecoration(
                   hintText: 'Enter design description...',
                   border: OutlineInputBorder(),
@@ -163,6 +187,7 @@ class _BannerPosterPageState extends State<BannerPosterPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  // Radio buttons for selecting installation option
                   Radio(
                     value: 'Yes',
                     groupValue: installationOption,
@@ -192,6 +217,7 @@ class _BannerPosterPageState extends State<BannerPosterPage> {
               ),
               SizedBox(height: 16.0),
               TextField(
+                // Text field for entering quantity
                 decoration: InputDecoration(
                   hintText: 'Enter quantity...',
                   border: OutlineInputBorder(),
@@ -201,6 +227,9 @@ class _BannerPosterPageState extends State<BannerPosterPage> {
                   setState(() {
                     quantity = int.tryParse(value) ?? 0;
                     price = quantity * 2000;
+                    if (installationOption == 'Yes') {
+                      price = price + 1000;
+                    }
                   });
                 },
               ),
@@ -212,9 +241,19 @@ class _BannerPosterPageState extends State<BannerPosterPage> {
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () async {
+                  if (selectedSize.isEmpty ||
+                      selectedOrientation.isEmpty ||
+                      selectedPaper.isEmpty ||
+                      designDescription.isEmpty ||
+                      installationOption.isEmpty ||
+                      quantity <= 0) {
+                    displaySnackBar('Please fill in all fields.');
+                    return;
+                  }
                   UserInfo userInfo = await Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => UserInfoInputScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => UserInfoInputScreen()),
                   );
 
                   if (userInfo != null) {

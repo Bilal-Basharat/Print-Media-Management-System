@@ -12,14 +12,6 @@ class User {
     required this.address,
     required this.contact,
   });
-  // User.empty()
-  //     : email = '',
-  //       firstname = '',
-  //       lastname = '',
-  //       address = '',
-  //       contact = '';
-  // Add other methods or factory constructors as needed
-
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       email: json['email'],

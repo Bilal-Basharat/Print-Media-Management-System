@@ -66,10 +66,13 @@ flutter:
   assets:
      - assets/images/icon.png
      - assets/images/img1.png
+     - assets/images/img2.png
      - assets/images/size.png
      - assets/images/port.png
      - assets/images/land.png
      - assets/images/page.png
+     - assets/images/r.png
+     - assets/images/c.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

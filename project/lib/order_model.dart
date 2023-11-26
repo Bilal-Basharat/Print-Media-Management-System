@@ -1,3 +1,5 @@
+// order.dart
+
 class Order {
   final String id;
   final String type;
@@ -9,7 +11,6 @@ class Order {
   final int totalPrice;
   final String userEmail;
 
-
   Order({
     required this.id,
     required this.type,
@@ -20,9 +21,9 @@ class Order {
     required this.quantity,
     required this.totalPrice,
     required this.userEmail,
-
   });
 
+  // Factory method to create an Order object from JSON data
   factory Order.fromJson(Map<String, dynamic> json) {
     return Order(
       id: json['_id'] ?? '',
@@ -34,7 +35,6 @@ class Order {
       quantity: json['quantity'] ?? 0,
       totalPrice: json['totalPrice'] ?? 0.0,
       userEmail: json['email'] ?? '',
-
     );
   }
 }

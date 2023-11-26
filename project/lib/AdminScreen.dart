@@ -6,8 +6,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:project/login.dart';
 import 'dart:io';
 
-
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -22,8 +20,6 @@ class MyApp extends StatelessWidget {
 }
 
 class AdminPage extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +41,7 @@ class AdminPage extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
+            // Drawer header with the title
             DrawerHeader(
               decoration: BoxDecoration(
                 color: Color(0xFF880A35),
@@ -57,11 +54,11 @@ class AdminPage extends StatelessWidget {
                 ),
               ),
             ),
+            // ListTile for Logout with onTap handler
             ListTile(
               title: Text('Logout'),
               onTap: () async {
                 // Call the generatePdfReport method when the button is clicked
-
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
@@ -70,7 +67,6 @@ class AdminPage extends StatelessWidget {
                 );
               },
             ),
-            
           ],
         ),
       ),
@@ -80,15 +76,15 @@ class AdminPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 250),
+              // Button to navigate to the JobsScreen
               TextButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => JobScreen()
+                      builder: (context) => JobScreen(),
                     ),
                   );
-                  // Handle button 1
                 },
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.all(8),
@@ -116,17 +112,17 @@ class AdminPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16),
+              // Button to navigate to the ViewOrders screen
               TextButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>ViewOrders()
+                      builder: (context) => ViewOrders(),
                     ),
                   );
                 },
                 style: TextButton.styleFrom(
-
                   padding: EdgeInsets.all(8),
                   primary: Color(0xFF880A35),
                   backgroundColor: Color(0xFF880A35),
@@ -152,12 +148,13 @@ class AdminPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16),
+              // Button to navigate to the Performance screen
               TextButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Performance()
+                      builder: (context) => Performance(),
                     ),
                   );
                 },
@@ -193,4 +190,3 @@ class AdminPage extends StatelessWidget {
     );
   }
 }
-

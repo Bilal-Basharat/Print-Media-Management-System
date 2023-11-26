@@ -1,12 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:project/OrderPlacedScreen.dart';
 import 'dart:convert';
 import 'config.dart';
 
-
 class CartScreen extends StatelessWidget {
+  // Parameters for order details
   final String selectedSize;
   final String selectedOrientation;
   final String selectedPaper;
@@ -14,8 +13,8 @@ class CartScreen extends StatelessWidget {
   final int price;
   final String installationOption;
   final String designDescription;
-  final String type; // Add type parameter
-  final String email; // Add email parameter
+  final String type;
+  final String email;
   final String name;
   final String contact;
   final String address;
@@ -37,6 +36,7 @@ class CartScreen extends StatelessWidget {
     required this.carddetails,
   });
 
+  // Function to show a dialog indicating the order has been placed
   Future<void> showOrderPlacedDialog(BuildContext context) async {
     return showDialog<void>(
       context: context,
@@ -48,7 +48,6 @@ class CartScreen extends StatelessWidget {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
-                // Clear the text fields
               },
               child: Text('OK'),
             ),
@@ -57,41 +56,29 @@ class CartScreen extends StatelessWidget {
       },
     );
   }
-  void additems()async{
-    var regBody = {
-      "type":type,
-      "size":selectedSize,
-      "paperorient":selectedOrientation,
-      "paper":selectedPaper,
-      "des":designDescription,
-      "quantity":quantity,
-      "totalPrice":price,
-      "email":email,
-      "name":name,
-      "contact":contact,
-      "address":address,
-      "carddetails":carddetails
 
+  // Function to add items to the server
+  void additems() async {
+    var regBody = {
+      "type": type,
+      "size": selectedSize,
+      "paperorient": selectedOrientation,
+      "paper": selectedPaper,
+      "des": designDescription,
+      "quantity": quantity,
+      "totalPrice": price,
+      "email": email,
+      "name": name,
+      "contact": contact,
+      "address": address,
+      "carddetails": carddetails
     };
     var response = await http.post(
       Uri.parse('http://192.168.0.103:3000/api/items/itemadd'),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode(regBody),
     );
-
-    // if (response.statusCode == 200) {
-    //   print('Navigation successful');
-    //   Navigator.push(
-    //     context,
-    //     MaterialPageRoute(builder: (context) => OrderPlacedScreen()),
-    //   );
-    // } else {
-    //   print('Navigation failed: ${response.statusCode}');
-    //   // Handle error case
-    // }
-
-}
-
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +135,7 @@ class CartScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
 
-            // name Textbox
+            // Name Textbox
             Text(
               'Name:',
               style: TextStyle(
@@ -169,7 +156,7 @@ class CartScreen extends StatelessWidget {
 
             SizedBox(height: 20),
 
-            // Contact  Textbox
+            // Contact Textbox
             Text(
               'Contact:',
               style: TextStyle(
@@ -189,7 +176,7 @@ class CartScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
 
-            // address Textbox
+            // Address Textbox
             Text(
               'Address:',
               style: TextStyle(
@@ -228,14 +215,13 @@ class CartScreen extends StatelessWidget {
               ),
               child: Text(carddetails),
             ),
+
             ElevatedButton(
               onPressed: () {
                 additems(); // Call the function to add items to the server
                 // You can also perform any other actions related to placing the order here
                 showOrderPlacedDialog(context);
-
               },
-
               child: Text('Place Order'),
             ),
           ],
@@ -244,3 +230,5 @@ class CartScreen extends StatelessWidget {
     );
   }
 }
+
+// Add comments as needed for clarity
